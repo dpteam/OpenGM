@@ -6,14 +6,14 @@ OpenGM
 ### Current Working on:
  * OpenDM: OpenDeathMatch
 
-## Comming soon:
+### Comming soon:
  * OpenTDM: OpenTeamDeathMatch
  * OpenGW: OpenGangWars
  * OpenDM: OpenDeathMatch
  * OpenRP: OpenRolePlay [?]
  * And other...
 
-## How to Install:
+### How to Install:
  * 1. Download latest SA:MP server <sa-mp.com>
  * 2. Download any of each gamemode
  * 3. Compile gamemode with pawno
