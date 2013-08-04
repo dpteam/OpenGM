@@ -19,3 +19,7 @@ OpenGM
  * 3. Compile gamemode with pawno
  * 4. Edit the server.cfg
  * 5. Run server.
+
+#### Tags:
+ * 1. Pawno, SA:MP, San Andreas Multiplayer, Grand Theft Auto Multiplayer
+ * 2. Open-Source GameMode, Pawno Compiler
