@@ -2,26 +2,25 @@
 #include <core>
 #include <float>
 
-#pragma tabsize 0
-
 new Text: Textdraw0;
 
-main()
-{
+main() {
 	print("GameMode.Init > Open-Source gamemode <github.com/dpteam>");
-	print("GameMode.Init > on DPLv4.2 [License Free Information]");
+	print("GameMode.Init > on DPLv5 [DartPower's License Free Information]");
 	print("GameMode.Init > Gamemode Loaded");
 }
 
+#define MAX_BAD_SKINS 14
 #define COLOR_GREY 0xAFAFAFAA
 #define COLOR_GREEN 0x33AA33AA
 #define COLOR_RED 0xAA3333AA
 #define COLOR_YELLOW 0xFFFF00AA
-#define COLOR_WHITE 0xFFFFFFAA
+#define COLOR_WHITE 0xFFFFFFFF
 #define COLOR_BLUE 0x3A47DEFF
 #define INACTIVE_PLAYER_ID 255
 #define GIVECASH_DELAY 5000 // Time in ms between /givecash commands.
 #define NUMVALUES 4
+
 forward MoneyGrubScoreUpdate();
 forward Givecashdelaytimer(playerid);
 forward SetPlayerRandomSpawn(playerid);
@@ -66,35 +65,28 @@ new Float:gCopPlayerSpawns[2][3] = {
 new gActivePlayers[MAX_PLAYERS];
 new gLastGaveCash[MAX_PLAYERS];
 
-public OnPlayerPickUpPickup(playerid, pickupid)
-{
+public OnPlayerPickUpPickup(playerid, pickupid) {
 	new s[256];
 	format(s,256,"Picked up %d",pickupid);
-	SendClientMessage(playerid,0xFFFFFFFF,s);
+	SendClientMessage(playerid,COLOR_WHITE,s);
 }
 
-public OnGameModeInit()
-{
+public OnGameModeInit() {
 	SetGameModeText("<github.com/dpteam/OpenDM>");
-	SendRconCommand("mapname FreeWorld");
 	EnableStuntBonusForAll(1);
 	UsePlayerPedAnims();
 	ShowNameTags(1);
 	ShowPlayerMarkers(1);
-	SetWorldTime(3);
-	SetGravity(0.008);
 	AllowInteriorWeapons(1);
-	for(new s = 0; s < 300; s++)
-	{
+	for(new s = 0; s < 300; s++) {
 		if(IsInvalidSkin(s)) continue;
-		else AddPlayerClass(s, 1958.3783, 1343.1572, 15.3746, 269.1425, 0, 0, 0, 0, 0, 0);
+		AddPlayerClass(s, 1958.3783, 1343.1572, 15.3746, 269.1425, 0, 0, 0, 0, 0, 0);
 	}
 	return 1;
 }
 
 forward SetupPlayerForClassSelection(playerid);
-public SetupPlayerForClassSelection(playerid)
-{
+public SetupPlayerForClassSelection(playerid) {
 	SetPlayerInterior(playerid,14);
 	SetPlayerPos(playerid,258.4893,-41.4008,1002.0234);
 	SetPlayerFacingAngle(playerid, 90.0);
@@ -102,8 +94,7 @@ public SetupPlayerForClassSelection(playerid)
 	SetPlayerCameraLookAt(playerid,258.4893,-41.4008,1002.0234);
 }
 
-public OnPlayerConnect(playerid)
-{
+public OnPlayerConnect(playerid) {
 	new pName[MAX_PLAYER_NAME], string[39 + MAX_PLAYER_NAME];
 	GetPlayerName(playerid, pName, sizeof(pName));
 	format(string, sizeof(string), "%s [ID:%d] connected to server.", pName, playerid);
@@ -111,8 +102,8 @@ public OnPlayerConnect(playerid)
 	SendDeathMessage(INVALID_PLAYER_ID,playerid,200);
 	SendClientMessage(playerid,COLOR_WHITE,"Welcome to Open-Source gamemode server");
 	SendClientMessage(playerid,COLOR_WHITE,"=You may fork this project at=");
-	SendClientMessage(playerid,COLOR_BLUE,"http://github.com/dpteam/OpenDM");
-	SendClientMessage(playerid,COLOR_GREEN,"Please enter /help to see commands");
+	SendClientMessage(playerid,COLOR_BLUE,"http://github.com/dpteam/OpenGM");
+	SendClientMessage(playerid,COLOR_GREEN,"Use /help to see commands");
 	gActivePlayers[playerid]++;
 	gLastGaveCash[playerid] = GetTickCount();
 	Textdraw0 = TextDrawCreate(415.000000, 2.000000, "Open-Source <fsf.org>");
@@ -126,16 +117,20 @@ public OnPlayerConnect(playerid)
 	return 1;
 }
 
-public OnPlayerDisconnect(playerid, reason)
-{
+public OnPlayerDisconnect(playerid, reason) {
 	new pName[MAX_PLAYER_NAME], string[39 + MAX_PLAYER_NAME];
 	GetPlayerName(playerid, pName, sizeof(pName));
-	switch(reason)
-	{
+	new reasons[3][64] = {
+	    "crashed/low-energy",
+	    "disconnected",
+	    "kicked"
+	};
+	/*switch(reason) {
 	case 0: format(string, sizeof(string), "%s [ID:%d] crashed/low-energy", pName, playerid);
 	case 1: format(string, sizeof(string), "%s [ID:%d] out", pName, playerid);
 	case 2: format(string, sizeof(string), "%s [ID:%d] kicked/banned", pName, playerid);
-	}
+	}*/
+	format(string, sizeof(string), "%s [ID:%d] %s", pName, playerid, reasons[reason]);
 	SendClientMessageToAll(COLOR_GREY, string);
 	SendDeathMessage(INVALID_PLAYER_ID,playerid,201);
 	gActivePlayers[playerid]--;
@@ -157,17 +152,16 @@ public OnPlayerSpawn(playerid)
 
 public SetPlayerRandomSpawn(playerid)
 {
-	if (iSpawnSet[playerid] == 1)
+	if (iSpawnSet[playerid])
 	{
 		new rand = random(sizeof(gCopPlayerSpawns));
 		SetPlayerPos(playerid, gCopPlayerSpawns[rand][0], gCopPlayerSpawns[rand][1], gCopPlayerSpawns[rand][2]); // Warp the player
 		SetPlayerFacingAngle(playerid, 270.0);
+		return 1;
 	}
-	else if (iSpawnSet[playerid] == 0)
-	{
-		new rand = random(sizeof(gRandomPlayerSpawns));
-		SetPlayerPos(playerid, gRandomPlayerSpawns[rand][0], gRandomPlayerSpawns[rand][1], gRandomPlayerSpawns[rand][2]); // Warp the player
-	}
+
+	new rand = random(sizeof(gRandomPlayerSpawns));
+	SetPlayerPos(playerid, gRandomPlayerSpawns[rand][0], gRandomPlayerSpawns[rand][1], gRandomPlayerSpawns[rand][2]); // Warp the player
 	return 1;
 }
 
@@ -176,19 +170,13 @@ public OnPlayerDeath(playerid, killerid, reason)
 	new playercash;
 	if(killerid == INVALID_PLAYER_ID) {
 		SendDeathMessage(INVALID_PLAYER_ID,playerid,reason);
-		ResetPlayerMoney(playerid);
 	} else {
 		SendDeathMessage(killerid,playerid,reason);
 		SetPlayerScore(killerid,GetPlayerScore(killerid)+1);
 		playercash = GetPlayerMoney(playerid);
-		if (playercash > 0)  {
-			GivePlayerMoney(killerid, playercash);
-			ResetPlayerMoney(playerid);
-		}
-		else
-		{
-		}
+		GivePlayerMoney(killerid, playercash);
 	}
+	ResetPlayerMoney(playerid);
 	GameTextForPlayer(playerid,"~w~WASTED",6000,3);
 	return 1;
 }
@@ -227,65 +215,58 @@ public OnPlayerCommandText(playerid, cmdtext[])
 	}
 	if(strcmp(cmdtext, "/flip", true, 10) == 0)
 	{
-		if(IsPlayerInAnyVehicle(playerid))
-		{
-			new Float:PX, Float:PY, Float:PZ, Float:PA;
-			GetPlayerPos(playerid, PX, PY, PZ);
-			GetVehicleZAngle(GetPlayerVehicleID(playerid), PA);
-			SetVehiclePos(GetPlayerVehicleID(playerid), PX, PY, PZ+1);
-			SetVehicleZAngle(GetPlayerVehicleID(playerid), PA);
-			SendClientMessage(playerid, COLOR_WHITE, "Your vehicle has been successfully flipped!");
-			PlayerPlaySound(playerid, 1085, 0.0, 0.0, 0.0);
-		}
-		else
-		{
-			SendClientMessage(playerid, COLOR_RED,"You need to be in a vehicle to use this command!");
-		}
+	    if(!IsPlayerInAnyVehicle(playerid))
+	    {
+	        SendClientMessage(playerid, COLOR_RED,"You need to be in a vehicle to use this command!");
+	        return 1;
+ 		}
+
+		new Float:PX, Float:PY, Float:PZ, Float:PA;
+		GetPlayerPos(playerid, PX, PY, PZ);
+		GetVehicleZAngle(GetPlayerVehicleID(playerid), PA);
+		SetVehiclePos(GetPlayerVehicleID(playerid), PX, PY, PZ+1);
+		SetVehicleZAngle(GetPlayerVehicleID(playerid), PA);
+		SendClientMessage(playerid, COLOR_WHITE, "Your vehicle has been successfully flipped!");
+		PlayerPlaySound(playerid, 1085, 0.0, 0.0, 0.0);
 		return 1;
 	}
 	return SendClientMessage(playerid,COLOR_RED,"ERROR, Unknown Command - Use /help");
 }
 
-public SendPlayerFormattedText(playerid, const str[], define)
-{
+public SendPlayerFormattedText(playerid, const str[], define) {
 	new tmpbuf[256];
 	format(tmpbuf, sizeof(tmpbuf), str, define);
 	SendClientMessage(playerid, 0xFF004040, tmpbuf);
 }
 
-public SendAllFormattedText(playerid, const str[], define)
-{
+public SendAllFormattedText(playerid, const str[], define) {
 	new tmpbuf[256];
 	format(tmpbuf, sizeof(tmpbuf), str, define);
 	SendClientMessageToAll(0xFFFF00AA, tmpbuf);
 }
 
-stock IsInvalidSkin(skinid)
-{
-	#define MAX_BAD_SKINS  14
-	if(skinid > 310) return true;
+stock IsInvalidSkin(skinid) {
+	if(skinid > 310)
+		return true;
+		
 	new badSkins[MAX_BAD_SKINS] = {
 		3, 4, 5, 6, 8, 42, 65, 74, 86,
 		119, 149, 208, 273, 289
 	};
+	
 	for (new i = 0; i < MAX_BAD_SKINS; i++)
 	{
 		if (skinid == badSkins[i]) return true;
 	}
+	
 	return false;
 }
 
-stock GetOnlinePlayersCount()
-{
-	new
-	totalPlayers
-	;
+stock GetOnlinePlayersCount() {
+	new totalPlayers;
 	for(new i, j = GetMaxPlayers(); i != j; ++i)
-	{
 		if(IsPlayerConnected(i) && !IsPlayerNPC(i))
-		{
 			++totalPlayers;
-		}
-	}
+			
 	return totalPlayers;
 }
