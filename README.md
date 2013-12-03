@@ -1,17 +1,10 @@
 OpenGM
 ======
 
-## Free and Open-Source of the SA:MP gamemodes
+## Free and Open-Source of the SA:MP gamemode
 
 ### Current Working on:
- * OpenDM: OpenDeathMatch
-
-### Comming soon:
- * OpenTDM: OpenTeamDeathMatch
- * OpenGW: OpenGangWars
- * OpenDM: OpenDeathMatch
- * OpenRP: OpenRolePlay [?]
- * And other...
+ * All Game-Modes compilation
 
 ### How to Install:
  * 1. Download latest SA:MP server <sa-mp.com>
