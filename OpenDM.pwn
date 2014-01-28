@@ -5,8 +5,8 @@
 new Text: Textdraw0;
 
 main() {
-	print("GameMode.Init > Open-Source gamemode <github.com/dpteam>");
-	print("GameMode.Init > on DPLv5 [DartPower's License Free Information]");
+	print("GameMode.Init > Open-Source gamemode <github.com/dpteam/OpenGM>");
+	print("GameMode.Init > on LFI [License Free Information]");
 	print("GameMode.Init > Gamemode Loaded");
 }
 
@@ -72,7 +72,7 @@ public OnPlayerPickUpPickup(playerid, pickupid) {
 }
 
 public OnGameModeInit() {
-	SetGameModeText("<github.com/dpteam/OpenDM>");
+	SetGameModeText("<github.com/dpteam/OpenGM>");
 	EnableStuntBonusForAll(1);
 	UsePlayerPedAnims();
 	ShowNameTags(1);
