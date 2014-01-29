@@ -397,7 +397,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
 		SendClientMessage(playerid,COLOR_WHITE,"Use /kill to suicide");
 		SendClientMessage(playerid,COLOR_WHITE,"Use /fix to fix car");
 		SendClientMessage(playerid,COLOR_WHITE,"Use /flip to flip car");
-		SendClientMessage(playerid,COLOR_WHITE,"Use /card to spawn cars");
+		SendClientMessage(playerid,COLOR_WHITE,"Use /cars to spawn cars");
 		return 1;
 	}
 	if(strcmp("/kill", cmdtext, true, 10) == 0)
