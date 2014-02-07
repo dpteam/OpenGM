@@ -45,6 +45,14 @@ new Text:txtSanFierro;
 new Text:txtLasVenturas;
 new gActivePlayers[MAX_PLAYERS];
 new gLastGaveCash[MAX_PLAYERS];
+new RainbowError;
+new RainbowGradient[25] = {
+	0xFF0000FF, 0xFF2C00FF, 0xFF5000FF, 0xFF8700FF, 0xFFA700FF,
+	0xFFDC00FF, 0xFFFB00FF, 0xC4FF00FF, 0x7BFF00FF, 0x00FF00FF,
+	0x00FF1EFF, 0x00FF3BFF, 0x00FF7CFF, 0x00FFAEFF, 0x00FFD5FF,
+	0x00FFFFFF, 0x00CCFFFF, 0x00ACFFFF, 0x0083FFFF, 0x0054FFFF,
+	0x0000FFFF, 0x2C00FFFF, 0x5F00FFFF, 0x9B00FFFF, 0xCB00FFFF
+};
 
 public OnPlayerPickUpPickup(playerid, pickupid) {
 	new s[256];
@@ -130,6 +138,15 @@ public OnPlayerConnect(playerid) {
 	TextDrawSetOutline(Textdraw0, 1);
 	TextDrawSetProportional(Textdraw0, 1);
 	TextDrawShowForAll(Textdraw0);
+	for(new i = GetMaxPlayers() - 1; i >= 0; --i)
+	{
+		if(i == sizeof(RainbowGradient)) RainbowError = 0;
+		if(IsPlayerConnected(i))
+		{
+			SetPlayerColor(i, RainbowGradient[i + RainbowError]);
+		}
+		else RainbowError -= 1;
+	}
 	return 1;
 }
 
@@ -141,15 +158,19 @@ public OnPlayerDisconnect(playerid, reason) {
 		"disconnected",
 		"kicked"
 	};
-	/*switch(reason) {
-	case 0: format(string, sizeof(string), "%s [ID:%d] crashed/low-energy", pName, playerid);
-	case 1: format(string, sizeof(string), "%s [ID:%d] out", pName, playerid);
-	case 2: format(string, sizeof(string), "%s [ID:%d] kicked/banned", pName, playerid);
-	}*/
 	format(string, sizeof(string), "%s [ID:%d] %s", pName, playerid, reasons[reason]);
 	SendClientMessageToAll(COLOR_GREY, string);
 	SendDeathMessage(INVALID_PLAYER_ID,playerid,201);
 	gActivePlayers[playerid]--;
+	for(new i = GetMaxPlayers() - 1; i >= 0; --i)
+	{
+		if(i == sizeof(RainbowGradient)) RainbowError = 0;
+		if(IsPlayerConnected(i))
+		{
+			SetPlayerColor(i, RainbowGradient[i - RainbowError]);
+		}
+		else RainbowError += 1;
+	}
 	return 1;
 }
 
@@ -385,7 +406,7 @@ public OnPlayerText(playerid, text[])
 	while(text[t++] != 0x0) text[t] = tolower(text[t]);
 	SetPlayerChatBubble(playerid, text, 0xAA3333AA, 80.0, 10000);
 	GetPlayerName(playerid, PlayerName, sizeof(PlayerName));
-	format(text, 1024, "%s(%d): {FFFFFF}%s", PlayerName, playerid, text);
+	format(text, 1024, "%s(%d): {GetPlayerColor(playerid)}%s", PlayerName, playerid, text);
 	SendClientMessageToAll(GetPlayerColor(playerid), text);
 }
 
