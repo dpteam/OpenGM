@@ -15,6 +15,7 @@
 //Very Common Colors
 #define COLOR_NORMAL_PLAYER 0xFFBB7777
 #define COLOR_DPT 0x0088FFFF
+
 //Default Colors
 #define COLOR_BASIC             0x0066FFAA
 #define COLOR_RED               0xCC0000AA
@@ -100,8 +101,11 @@ new Text: Textdraw0;
 
 main()
 {
-	print("GameMode.Info > Scripted by DPT.DartPower");
-	print("GameMode.Info > Function ideas by NickBock95, DPT.DartPower ");
+	print("GameMode.Info > Open-Source gamemode <github.com/dpteam/OpenGM>");
+	print("GameMode.Info > dode is maintained at LFI [License Free Information] license");
+	print("GameMode.Info > Scripted by DartPower");
+	print("GameMode.Info > Function ideas by NickBock, DartPower ");
+	print("GameMode.Info > Bug fixing by SerejaN");
 }
 
 //Random Messages//
@@ -127,10 +131,7 @@ public UpdateTime()
 
 public OnGameModeInit()
 {
-	print("GameMode.Init > Open-Source gamemode <github.com/dpteam/OpenGM>");
-	print("GameMode.Init > on LFI [License Free Information]");
 	print("GameMode.Init > Gamemode Loaded");
-
 	SetGameModeText("Stunt/Drift/Freeroam/Race/Fun");
 	EnableStuntBonusForAll(1);
 	UsePlayerPedAnims();
@@ -141,38 +142,30 @@ public OnGameModeInit()
 	SetWeather(0);
 	SetTimer("RandMessagesx",100000,1);
 	SetTimer("InfiniteNitro",1000,1);
-
 	ClassSel_InitTextDraws();
-
 	for(new s = 0; s < 312; s++) if(!IsInvalidSkin(s)) AddPlayerClass(s, 1958.3783, 1343.1572, 15.3746, 269.1425, 0, 0, 0, 0, 0, 0);
-
 	// SPECIAL
 	total_vehicles_from_files += LoadStaticVehiclesFromFile("vehicles/trains.txt");
 	total_vehicles_from_files += LoadStaticVehiclesFromFile("vehicles/pilots.txt");
-
 	// LAS VENTURAS
 	total_vehicles_from_files += LoadStaticVehiclesFromFile("vehicles/lv_law.txt");
 	total_vehicles_from_files += LoadStaticVehiclesFromFile("vehicles/lv_airport.txt");
 	total_vehicles_from_files += LoadStaticVehiclesFromFile("vehicles/lv_gen.txt");
-
 	// SAN FIERRO
 	total_vehicles_from_files += LoadStaticVehiclesFromFile("vehicles/sf_law.txt");
 	total_vehicles_from_files += LoadStaticVehiclesFromFile("vehicles/sf_airport.txt");
 	total_vehicles_from_files += LoadStaticVehiclesFromFile("vehicles/sf_gen.txt");
-
 	// LOS SANTOS
 	total_vehicles_from_files += LoadStaticVehiclesFromFile("vehicles/ls_law.txt");
 	total_vehicles_from_files += LoadStaticVehiclesFromFile("vehicles/ls_airport.txt");
 	total_vehicles_from_files += LoadStaticVehiclesFromFile("vehicles/ls_gen_inner.txt");
 	total_vehicles_from_files += LoadStaticVehiclesFromFile("vehicles/ls_gen_outer.txt");
-
 	// OTHER AREAS
 	total_vehicles_from_files += LoadStaticVehiclesFromFile("vehicles/whetstone.txt");
 	total_vehicles_from_files += LoadStaticVehiclesFromFile("vehicles/bone.txt");
 	total_vehicles_from_files += LoadStaticVehiclesFromFile("vehicles/flint.txt");
 	total_vehicles_from_files += LoadStaticVehiclesFromFile("vehicles/tierra.txt");
 	total_vehicles_from_files += LoadStaticVehiclesFromFile("vehicles/red_county.txt");
-
 	txtTimeDisp = TextDrawCreate(605.0,45.0,"00:00");
 	TextDrawUseBox(txtTimeDisp, 0);
 	TextDrawFont(txtTimeDisp, 3);
@@ -182,10 +175,8 @@ public OnGameModeInit()
 	TextDrawColor(txtTimeDisp,0xFFFFFFFF);
 	TextDrawAlignment(txtTimeDisp,3);
 	TextDrawLetterSize(txtTimeDisp,0.399999,1.600000);
-
 	UpdateTime();
 	SetTimer("UpdateTime",1000 * 60,1);
-
 	Textdraw0 = TextDrawCreate(555.000000, 2.000000, "hz");
 	TextDrawBackgroundColor(Textdraw0, 255);
 	TextDrawFont(Textdraw0, 2);
@@ -193,22 +184,17 @@ public OnGameModeInit()
 	TextDrawColor(Textdraw0, -16711681);
 	TextDrawSetOutline(Textdraw0, 1);
 	TextDrawSetProportional(Textdraw0, 1);
-
 	for(new playerid = 0; playerid <= GetPlayerPoolSize(); playerid++)
 	{
 		if(!IsPlayerConnected(playerid)) continue;
 		TextDrawShowForPlayer(playerid, Textdraw0);
 	}
-
 	return true;
 }
 
 public OnGameModeExit()
 {
-	print("GameMode.Init > Open-Source gamemode <github.com/dpteam/OpenGM>");
-	print("GameMode.Init > on LFI [License Free Information]");
 	print("GameMode.Init > Gamemode Unloaded");
-
 	TextDrawHideForAll(Textdraw0);
 	TextDrawDestroy(Textdraw0);
 	return true;
@@ -256,10 +242,8 @@ public InfiniteNitro()
 	{
 		if(!IsPlayerConnected(playerid)) continue;
 		if(GetPlayerState(playerid) != 2) continue;
-
 		vehicleid = GetPlayerVehicleID(playerid);
 		modelid = GetVehicleModel(vehicleid);
-
 		if(!IsVehicle_NOSRestricted(modelid)) AddVehicleComponent(vehicleid,1010);
 	}
 	return true;
@@ -278,12 +262,10 @@ static const reasons[3][64] =
 	"Kicked/Banned"
 };
 
-
 public OnPlayerDisconnect(playerid, reason)
 {
 	new pName[MAX_PLAYER_NAME], string[39 + MAX_PLAYER_NAME];
 	GetPlayerName(playerid, pName, sizeof(pName));
-
 	format(string, sizeof(string), "%s [ID:%d] отключился. %s", pName, playerid, reasons[reason]);
 	SendClientMessageToAll(COLOR_GREY, string);
 	SendDeathMessage(INVALID_PLAYER_ID,playerid,201);
@@ -294,13 +276,10 @@ public OnPlayerDisconnect(playerid, reason)
 public OnPlayerSpawn(playerid)
 {
 	if(IsPlayerNPC(playerid)) return true;
-
 	new randSpawn = 0;
-
 	SetPlayerInterior(playerid,0);
 	TogglePlayerClock(playerid,0);
 	ResetPlayerMoney(playerid);
-
 	if(CITY_LOS_SANTOS == gPlayerCitySelection[playerid]) {
 		randSpawn = random(sizeof(gRandomSpawns_LosSantos));
 		SetPlayerPos(playerid,
@@ -327,7 +306,6 @@ public OnPlayerSpawn(playerid)
 	}
 	SetPlayerInterior(playerid,0);
 	TogglePlayerClock(playerid,1);
-
 	/* 	SetPlayerSkillLevel(playerid,WEAPONSKILL_PISTOL,200);
 	SetPlayerSkillLevel(playerid,WEAPONSKILL_PISTOL_SILENCED,200);
 	SetPlayerSkillLevel(playerid,WEAPONSKILL_DESERT_EAGLE,200);
@@ -339,7 +317,6 @@ public OnPlayerSpawn(playerid)
 	SetPlayerSkillLevel(playerid,WEAPONSKILL_AK47,200);
 	SetPlayerSkillLevel(playerid,WEAPONSKILL_M4,200);
 	SetPlayerSkillLevel(playerid,WEAPONSKILL_SNIPERRIFLE,200); */
-
 	TextDrawShowForPlayer(playerid,txtTimeDisp);
 	gettime(hour, minute);
 	return true;
@@ -385,7 +362,6 @@ public TuneCar()
 	AddVehicleComponent(Uranus1,1163);
 	AddVehicleComponent(Uranus1,1010);
 	ChangeVehiclePaintjob(Uranus1,2);
-
 	AddVehicleComponent(Elegy1,1034);
 	AddVehicleComponent(Elegy1,1036);
 	AddVehicleComponent(Elegy1,1038);
@@ -395,7 +371,6 @@ public TuneCar()
 	AddVehicleComponent(Elegy1,1171);
 	AddVehicleComponent(Elegy1,1010);
 	ChangeVehiclePaintjob(Elegy1,1);
-
 	AddVehicleComponent(Sultan1,1026);
 	AddVehicleComponent(Sultan1,1027);
 	AddVehicleComponent(Sultan1,1028);
@@ -405,7 +380,6 @@ public TuneCar()
 	AddVehicleComponent(Sultan1,1169);
 	AddVehicleComponent(Sultan1,1010);
 	ChangeVehiclePaintjob(Sultan1,2);
-
 	AddVehicleComponent(Flash1,1046);
 	AddVehicleComponent(Flash1,1047);
 	AddVehicleComponent(Flash1,1051);
@@ -415,7 +389,6 @@ public TuneCar()
 	AddVehicleComponent(Flash1,1153);
 	AddVehicleComponent(Flash1,1010);
 	ChangeVehiclePaintjob(Flash1,2);
-
 	AddVehicleComponent(Uranus2,1092);
 	AddVehicleComponent(Uranus2,1088);
 	AddVehicleComponent(Uranus2,1090);
@@ -425,7 +398,6 @@ public TuneCar()
 	AddVehicleComponent(Uranus2,1163);
 	AddVehicleComponent(Uranus2,1010);
 	ChangeVehiclePaintjob(Uranus2,2);
-
 	AddVehicleComponent(Elegy2,1034);
 	AddVehicleComponent(Elegy2,1036);
 	AddVehicleComponent(Elegy2,1038);
@@ -435,7 +407,6 @@ public TuneCar()
 	AddVehicleComponent(Elegy2,1171);
 	AddVehicleComponent(Elegy2,1010);
 	ChangeVehiclePaintjob(Elegy2,1);
-
 	AddVehicleComponent(Sultan2,1026);
 	AddVehicleComponent(Sultan2,1027);
 	AddVehicleComponent(Sultan2,1028);
@@ -515,12 +486,10 @@ ClassSel_SetupSelectedCity(playerid)
 	if(gPlayerCitySelection[playerid] == -1) {
 		gPlayerCitySelection[playerid] = CITY_LOS_SANTOS;
 	}
-
 	if(gPlayerCitySelection[playerid] == CITY_LOS_SANTOS) {
 		SetPlayerInterior(playerid,0);
 		SetPlayerCameraPos(playerid,1630.6136,-2286.0298,110.0);
 		SetPlayerCameraLookAt(playerid,1887.6034,-1682.1442,47.6167);
-
 		TextDrawShowForPlayer(playerid,txtLosSantos);
 		TextDrawHideForPlayer(playerid,txtSanFierro);
 		TextDrawHideForPlayer(playerid,txtLasVenturas);
@@ -529,7 +498,6 @@ ClassSel_SetupSelectedCity(playerid)
 		SetPlayerInterior(playerid,0);
 		SetPlayerCameraPos(playerid,-1300.8754,68.0546,129.4823);
 		SetPlayerCameraLookAt(playerid,-1817.9412,769.3878,132.6589);
-
 		TextDrawHideForPlayer(playerid,txtLosSantos);
 		TextDrawShowForPlayer(playerid,txtSanFierro);
 		TextDrawHideForPlayer(playerid,txtLasVenturas);
@@ -538,7 +506,6 @@ ClassSel_SetupSelectedCity(playerid)
 		SetPlayerInterior(playerid,0);
 		SetPlayerCameraPos(playerid,1310.6155,1675.9182,110.7390);
 		SetPlayerCameraLookAt(playerid,2285.2944,1919.3756,68.2275);
-
 		TextDrawHideForPlayer(playerid,txtLosSantos);
 		TextDrawHideForPlayer(playerid,txtSanFierro);
 		TextDrawShowForPlayer(playerid,txtLasVenturas);
@@ -571,14 +538,11 @@ ClassSel_HandleCitySelection(playerid)
 {
 	new Keys,ud,lr;
 	GetPlayerKeys(playerid,Keys,ud,lr);
-
 	if(gPlayerCitySelection[playerid] == -1) {
 		ClassSel_SwitchToNextCity(playerid);
 		return;
 	}
-
 	if( (GetTickCount() - gPlayerLastCitySelectionTick[playerid]) < 500 ) return;
-
 	if(Keys & KEY_FIRE) {
 		gPlayerHasCitySelected[playerid] = 1;
 		TextDrawHideForPlayer(playerid,txtClassSelHelper);
@@ -588,7 +552,6 @@ ClassSel_HandleCitySelection(playerid)
 		TogglePlayerSpectating(playerid,0);
 		return;
 	}
-
 	if(lr > 0) {
 		ClassSel_SwitchToNextCity(playerid);
 	}
@@ -600,7 +563,6 @@ ClassSel_HandleCitySelection(playerid)
 public OnPlayerRequestClass(playerid, classid)
 {
 	if(IsPlayerNPC(playerid)) return true;
-
 	if(gPlayerHasCitySelected[playerid]) {
 		ClassSel_SetupCharSelection(playerid);
 		return true;
@@ -611,309 +573,307 @@ public OnPlayerRequestClass(playerid, classid)
 			gPlayerCitySelection[playerid] = -1;
 		}
 	}
-
 	switch(GetPlayerSkin(playerid))
 	{
-	case 0: GameTextForPlayer(playerid, "Carl 'CJ' Johnson", 2000, 4);
-	case 1: GameTextForPlayer(playerid, "The Truth", 2000, 4);
-	case 2: GameTextForPlayer(playerid, "Maccer", 2000, 4);
-	case 3: GameTextForPlayer(playerid, "Andre", 2000, 4);
-	case 4: GameTextForPlayer(playerid, "Barry 'Big Bear' Thorne (Thin)", 2000, 4);
-	case 5: GameTextForPlayer(playerid, "Barry 'Big Bear' Thorne (Big)", 2000, 4);
-	case 6: GameTextForPlayer(playerid, "Emmet", 2000, 4);
-	case 7: GameTextForPlayer(playerid, "Taxi Driver/Train Driver", 2000, 4);
-	case 8: GameTextForPlayer(playerid, "Janitor", 2000, 4);
-	case 9: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 10: GameTextForPlayer(playerid, "Old Woman", 2000, 4);
-	case 11: GameTextForPlayer(playerid, "Casino Croupier", 2000, 4);
-	case 12: GameTextForPlayer(playerid, "Rich Woman", 2000, 4);
-	case 13: GameTextForPlayer(playerid, "Street Girl", 2000, 4);
-	case 14: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 15: GameTextForPlayer(playerid, "Mr.Whittaker (RS Haul Owner)", 2000, 4);
-	case 16: GameTextForPlayer(playerid, "Airport Ground Worker", 2000, 4);
-	case 17: GameTextForPlayer(playerid, "Businessman", 2000, 4);
-	case 18: GameTextForPlayer(playerid, "Beach Visitor", 2000, 4);
-	case 19: GameTextForPlayer(playerid, "DJ", 2000, 4);
-	case 20: GameTextForPlayer(playerid, "Rich Guy (Madd Dogg's Manager", 2000, 4);
-	case 21: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 22: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 23: GameTextForPlayer(playerid, "BMXer", 2000, 4);
-	case 24: GameTextForPlayer(playerid, "Madd Dogg's Bodyguard", 2000, 4);
-	case 25: GameTextForPlayer(playerid, "Madd Dogg's Bodyguard", 2000, 4);
-	case 26: GameTextForPlayer(playerid, "Backpacker", 2000, 4);
-	case 27: GameTextForPlayer(playerid, "Construction Work", 2000, 4);
-	case 28: GameTextForPlayer(playerid, "Drug Dealer", 2000, 4);
-	case 29: GameTextForPlayer(playerid, "Drug Dealer", 2000, 4);
-	case 30: GameTextForPlayer(playerid, "Drug Dealer", 2000, 4);
-	case 31: GameTextForPlayer(playerid, "Farm Town Inhabitant", 2000, 4);
-	case 32: GameTextForPlayer(playerid, "Farm Town Inhabitant", 2000, 4);
-	case 33: GameTextForPlayer(playerid, "Farm Town Inhabitant", 2000, 4);
-	case 34: GameTextForPlayer(playerid, "Farm Town Inhabitant", 2000, 4);
-	case 35: GameTextForPlayer(playerid, "Gardener", 2000, 4);
-	case 36: GameTextForPlayer(playerid, "Golfer", 2000, 4);
-	case 37: GameTextForPlayer(playerid, "Golfer", 2000, 4);
-	case 38: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 39: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 40: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 41: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 42: GameTextForPlayer(playerid, "Jethro", 2000, 4);
-	case 43: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 44: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 45: GameTextForPlayer(playerid, "Beach Visitor", 2000, 4);
-	case 46: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 47: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 48: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 49: GameTextForPlayer(playerid, "Snakehead (Da Nang)", 2000, 4);
-	case 50: GameTextForPlayer(playerid, "Mechanic", 2000, 4);
-	case 51: GameTextForPlayer(playerid, "Mountain Biker", 2000, 4);
-	case 52: GameTextForPlayer(playerid, "Unknown", 2000, 4);
-	case 53: GameTextForPlayer(playerid, "Street Girl", 2000, 4);
-	case 54: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 55: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 56: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 57: GameTextForPlayer(playerid, "Feds", 2000, 4);
-	case 58: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 59: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 60: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 61: GameTextForPlayer(playerid, "Pilot", 2000, 4);
-	case 62: GameTextForPlayer(playerid, "Colonel Fuhrberger", 2000, 4);
-	case 63: GameTextForPlayer(playerid, "Prostitute", 2000, 4);
-	case 64: GameTextForPlayer(playerid, "Prostitute", 2000, 4);
-	case 65: GameTextForPlayer(playerid, "Kendl Johnson", 2000, 4);
-	case 66: GameTextForPlayer(playerid, "Pool Player", 2000, 4);
-	case 67: GameTextForPlayer(playerid, "Pool Player", 2000, 4);
-	case 68: GameTextForPlayer(playerid, "Priest/Preacher", 2000, 4);
-	case 69: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 70: GameTextForPlayer(playerid, "Scientist", 2000, 4);
-	case 71: GameTextForPlayer(playerid, "Security Guard", 2000, 4);
-	case 72: GameTextForPlayer(playerid, "Hippy", 2000, 4);
-	case 73: GameTextForPlayer(playerid, "Hippy", 2000, 4);
-	case 75: GameTextForPlayer(playerid, "Prostitute", 2000, 4);
-	case 76: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 77: GameTextForPlayer(playerid, "Homeless", 2000, 4);
-	case 78: GameTextForPlayer(playerid, "Homeless", 2000, 4);
-	case 79: GameTextForPlayer(playerid, "Homeless", 2000, 4);
-	case 80: GameTextForPlayer(playerid, "Boxer", 2000, 4);
-	case 81: GameTextForPlayer(playerid, "Boxer", 2000, 4);
-	case 82: GameTextForPlayer(playerid, "Black Elvis", 2000, 4);
-	case 83: GameTextForPlayer(playerid, "White Elvis", 2000, 4);
-	case 84: GameTextForPlayer(playerid, "Blue Elvis", 2000, 4);
-	case 85: GameTextForPlayer(playerid, "Prostitute", 2000, 4);
-	case 86: GameTextForPlayer(playerid, "Ryder With Robbery Mask", 2000, 4);
-	case 87: GameTextForPlayer(playerid, "Stripper", 2000, 4);
-	case 88: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 89: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 90: GameTextForPlayer(playerid, "Jogger", 2000, 4);
-	case 91: GameTextForPlayer(playerid, "Rich Woman", 2000, 4);
-	case 92: GameTextForPlayer(playerid, "Rollerskater", 2000, 4);
-	case 93: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 94: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 95: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 96: GameTextForPlayer(playerid, "Jogger", 2000, 4);
-	case 97: GameTextForPlayer(playerid, "Lifeguard", 2000, 4);
-	case 98: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 99: GameTextForPlayer(playerid, "Homeless", 2000, 4);
-	case 100: GameTextForPlayer(playerid, "Biker", 2000, 4);
-	case 101: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 102: GameTextForPlayer(playerid, "Balla", 2000, 4);
-	case 103: GameTextForPlayer(playerid, "Balla", 2000, 4);
-	case 104: GameTextForPlayer(playerid, "Balla", 2000, 4);
-	case 105: GameTextForPlayer(playerid, "Grove Street Families", 2000, 4);
-	case 106: GameTextForPlayer(playerid, "Grove Street Families", 2000, 4);
-	case 107: GameTextForPlayer(playerid, "Grove Street Families", 2000, 4);
-	case 108: GameTextForPlayer(playerid, "Los Santos Vagos", 2000, 4);
-	case 109: GameTextForPlayer(playerid, "Los Santos Vagos", 2000, 4);
-	case 110: GameTextForPlayer(playerid, "Los Santos Vagos", 2000, 4);
-	case 111: GameTextForPlayer(playerid, "The Russian Mafia", 2000, 4);
-	case 112: GameTextForPlayer(playerid, "The Russian Mafia", 2000, 4);
-	case 113: GameTextForPlayer(playerid, "The Russian Mafia", 2000, 4);
-	case 114: GameTextForPlayer(playerid, "Varios Los Aztecas", 2000, 4);
-	case 115: GameTextForPlayer(playerid, "Varios Los Aztecas", 2000, 4);
-	case 116: GameTextForPlayer(playerid, "Varios Los Aztecas", 2000, 4);
-	case 117: GameTextForPlayer(playerid, "Triad", 2000, 4);
-	case 118: GameTextForPlayer(playerid, "Triad", 2000, 4);
-	case 119: GameTextForPlayer(playerid, "Johhny Sindacco", 2000, 4);
-	case 120: GameTextForPlayer(playerid, "Triad Boss", 2000, 4);
-	case 121: GameTextForPlayer(playerid, "Da Nang Boy", 2000, 4);
-	case 122: GameTextForPlayer(playerid, "Da Nang Boy", 2000, 4);
-	case 123: GameTextForPlayer(playerid, "Da Nang Boy", 2000, 4);
-	case 124: GameTextForPlayer(playerid, "Mafia", 2000, 4);
-	case 125: GameTextForPlayer(playerid, "Mafia", 2000, 4);
-	case 126: GameTextForPlayer(playerid, "Mafia", 2000, 4);
-	case 127: GameTextForPlayer(playerid, "Mafia", 2000, 4);
-	case 128: GameTextForPlayer(playerid, "Farm Inhabitant", 2000, 4);
-	case 129: GameTextForPlayer(playerid, "Farm Inhabitant", 2000, 4);
-	case 130: GameTextForPlayer(playerid, "Farm Inhabitant", 2000, 4);
-	case 131: GameTextForPlayer(playerid, "Farm Inhabitant", 2000, 4);
-	case 132: GameTextForPlayer(playerid, "Farm Inhabitant", 2000, 4);
-	case 133: GameTextForPlayer(playerid, "Farm Inhabitant", 2000, 4);
-	case 134: GameTextForPlayer(playerid, "Homeless", 2000, 4);
-	case 135: GameTextForPlayer(playerid, "Homeless", 2000, 4);
-	case 136: GameTextForPlayer(playerid, "Homeless", 2000, 4);
-	case 137: GameTextForPlayer(playerid, "Homeless", 2000, 4);
-	case 138: GameTextForPlayer(playerid, "Beach Visitor", 2000, 4);
-	case 139: GameTextForPlayer(playerid, "Beach Visitor", 2000, 4);
-	case 140: GameTextForPlayer(playerid, "Beach Visitor", 2000, 4);
-	case 141: GameTextForPlayer(playerid, "Businesswoman", 2000, 4);
-	case 142: GameTextForPlayer(playerid, "Taxi Driver", 2000, 4);
-	case 143: GameTextForPlayer(playerid, "Crack Maker", 2000, 4);
-	case 144: GameTextForPlayer(playerid, "Crack Maker", 2000, 4);
-	case 145: GameTextForPlayer(playerid, "Crack Maker", 2000, 4);
-	case 146: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 147: GameTextForPlayer(playerid, "Businessman", 2000, 4);
-	case 148: GameTextForPlayer(playerid, "Businesswoman", 2000, 4);
-	case 149: GameTextForPlayer(playerid, "Big Smoke Armored", 2000, 4);
-	case 150: GameTextForPlayer(playerid, "Businesswoman", 2000, 4);
-	case 151: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 152: GameTextForPlayer(playerid, "Prostitute", 2000, 4);
-	case 153: GameTextForPlayer(playerid, "Construction Worker", 2000, 4);
-	case 154: GameTextForPlayer(playerid, "Beach Visitor", 2000, 4);
-	case 155: GameTextForPlayer(playerid, "Well Stacked Pizza Worker", 2000, 4);
-	case 156: GameTextForPlayer(playerid, "Barber", 2000, 4);
-	case 157: GameTextForPlayer(playerid, "Hillbilly", 2000, 4);
-	case 158: GameTextForPlayer(playerid, "Farmer", 2000, 4);
-	case 159: GameTextForPlayer(playerid, "Hillbilly", 2000, 4);
-	case 160: GameTextForPlayer(playerid, "Hillbilly", 2000, 4);
-	case 161: GameTextForPlayer(playerid, "Farmer", 2000, 4);
-	case 162: GameTextForPlayer(playerid, "Hillbilly", 2000, 4);
-	case 163: GameTextForPlayer(playerid, "Black Bouncer", 2000, 4);
-	case 164: GameTextForPlayer(playerid, "White Bouncer", 2000, 4);
-	case 165: GameTextForPlayer(playerid, "White MIB Agent", 2000, 4);
-	case 166: GameTextForPlayer(playerid, "Black MIB Agent", 2000, 4);
-	case 167: GameTextForPlayer(playerid, "Cluckin' Bell Worker", 2000, 4);
-	case 168: GameTextForPlayer(playerid, "Hotdog/Chilli Dog Vendor", 2000, 4);
-	case 169: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 170: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 171: GameTextForPlayer(playerid, "Blackjack Dealer", 2000, 4);
-	case 172: GameTextForPlayer(playerid, "Casino Croupier", 2000, 4);
-	case 173: GameTextForPlayer(playerid, "San Fierro Rifa", 2000, 4);
-	case 174: GameTextForPlayer(playerid, "San Fierro Rifa", 2000, 4);
-	case 175: GameTextForPlayer(playerid, "San Fierro Rifa", 2000, 4);
-	case 176: GameTextForPlayer(playerid, "Barber", 2000, 4);
-	case 177: GameTextForPlayer(playerid, "Barber", 2000, 4);
-	case 178: GameTextForPlayer(playerid, "Whore", 2000, 4);
-	case 179: GameTextForPlayer(playerid, "Ammunation Salesman", 2000, 4);
-	case 180: GameTextForPlayer(playerid, "Tattoo Artist", 2000, 4);
-	case 181: GameTextForPlayer(playerid, "Punk", 2000, 4);
-	case 182: GameTextForPlayer(playerid, "Cab Driver", 2000, 4);
-	case 183: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 184: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 185: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 186: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 187: GameTextForPlayer(playerid, "Businessman", 2000, 4);
-	case 188: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 189: GameTextForPlayer(playerid, "Valet", 2000, 4);
-	case 190: GameTextForPlayer(playerid, "Barbara Schternvart", 2000, 4);
-	case 191: GameTextForPlayer(playerid, "Helena Wankstein", 2000, 4);
-	case 192: GameTextForPlayer(playerid, "Michelle Cannes", 2000, 4);
-	case 193: GameTextForPlayer(playerid, "Katie Zhan", 2000, 4);
-	case 194: GameTextForPlayer(playerid, "Millie Perkins", 2000, 4);
-	case 195: GameTextForPlayer(playerid, "Denise Robinson", 2000, 4);
-	case 196: GameTextForPlayer(playerid, "Farm Town Inhabitant", 2000, 4);
-	case 197: GameTextForPlayer(playerid, "Hillbilly", 2000, 4);
-	case 198: GameTextForPlayer(playerid, "Farm Town Inhabitant", 2000, 4);
-	case 199: GameTextForPlayer(playerid, "Farm Town Inhabitant", 2000, 4);
-	case 200: GameTextForPlayer(playerid, "Hillbilly", 2000, 4);
-	case 201: GameTextForPlayer(playerid, "Farmer", 2000, 4);
-	case 202: GameTextForPlayer(playerid, "Farmer", 2000, 4);
-	case 203: GameTextForPlayer(playerid, "Karate Teacher", 2000, 4);
-	case 204: GameTextForPlayer(playerid, "Karate Teacher", 2000, 4);
-	case 205: GameTextForPlayer(playerid, "Burger Shot Cashier", 2000, 4);
-	case 206: GameTextForPlayer(playerid, "Cab Driver", 2000, 4);
-	case 207: GameTextForPlayer(playerid, "Prostitute", 2000, 4);
-	case 208: GameTextForPlayer(playerid, "Su Xi Mu (Suzie)", 2000, 4);
-	case 209: GameTextForPlayer(playerid, "Noodle Stand Vendor", 2000, 4);
-	case 210: GameTextForPlayer(playerid, "Boater", 2000, 4);
-	case 211: GameTextForPlayer(playerid, "Clothes Shop Staff", 2000, 4);
-	case 212: GameTextForPlayer(playerid, "Homeless", 2000, 4);
-	case 213: GameTextForPlayer(playerid, "Weird Old Man", 2000, 4);
-	case 214: GameTextForPlayer(playerid, "Waitress (Maria Latore)", 2000, 4);
-	case 215: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 216: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 217: GameTextForPlayer(playerid, "Clothes Shop Staff", 2000, 4);
-	case 218: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 219: GameTextForPlayer(playerid, "Rich Woman", 2000, 4);
-	case 220: GameTextForPlayer(playerid, "Cab Driver", 2000, 4);
-	case 221: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 222: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 223: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 224: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 225: GameTextForPlayer(playerid, "Hillbilly", 2000, 4);
-	case 226: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 227: GameTextForPlayer(playerid, "Businessman", 2000, 4);
-	case 228: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 229: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 230: GameTextForPlayer(playerid, "Homeless", 2000, 4);
-	case 231: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 232: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 233: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 234: GameTextForPlayer(playerid, "Cab Driver", 2000, 4);
-	case 235: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 236: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 237: GameTextForPlayer(playerid, "Prostitute", 2000, 4);
-	case 238: GameTextForPlayer(playerid, "Prostitute", 2000, 4);
-	case 239: GameTextForPlayer(playerid, "Homeless", 2000, 4);
-	case 240: GameTextForPlayer(playerid, "The D.A", 2000, 4);
-	case 241: GameTextForPlayer(playerid, "Afro American", 2000, 4);
-	case 242: GameTextForPlayer(playerid, "Mexican", 2000, 4);
-	case 243: GameTextForPlayer(playerid, "Prostitute", 2000, 4);
-	case 244: GameTextForPlayer(playerid, "Stripper", 2000, 4);
-	case 245: GameTextForPlayer(playerid, "Prostitute", 2000, 4);
-	case 246: GameTextForPlayer(playerid, "Stripper", 2000, 4);
-	case 247: GameTextForPlayer(playerid, "Biker", 2000, 4);
-	case 248: GameTextForPlayer(playerid, "Biker", 2000, 4);
-	case 249: GameTextForPlayer(playerid, "Pimp", 2000, 4);
-	case 250: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 251: GameTextForPlayer(playerid, "Lifeguard", 2000, 4);
-	case 252: GameTextForPlayer(playerid, "Naked Valet", 2000, 4);
-	case 253: GameTextForPlayer(playerid, "Bus Driver", 2000, 4);
-	case 254: GameTextForPlayer(playerid, "Biker Drug Dealer", 2000, 4);
-	case 255: GameTextForPlayer(playerid, "Chauffeur (Limo Driver)", 2000, 4);
-	case 256: GameTextForPlayer(playerid, "Stripper", 2000, 4);
-	case 257: GameTextForPlayer(playerid, "Stripper", 2000, 4);
-	case 258: GameTextForPlayer(playerid, "Heckler", 2000, 4);
-	case 259: GameTextForPlayer(playerid, "Heckler", 2000, 4);
-	case 260: GameTextForPlayer(playerid, "Construction Worker", 2000, 4);
-	case 261: GameTextForPlayer(playerid, "Cab Driver", 2000, 4);
-	case 262: GameTextForPlayer(playerid, "Cab Driver", 2000, 4);
-	case 263: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
-	case 264: GameTextForPlayer(playerid, "Clown", 2000, 4);
-	case 265: GameTextForPlayer(playerid, "Officer Frank Tenpenny (Corrupt Cop)", 2000, 4);
-	case 266: GameTextForPlayer(playerid, "Officer Eddie Pulaski (Corrupt Cop)", 2000, 4);
-	case 267: GameTextForPlayer(playerid, "Officer Jimmy Hernandez", 2000, 4);
-	case 268: GameTextForPlayer(playerid, "Dwaine/Dwayne", 2000, 4);
-	case 269: GameTextForPlayer(playerid, "Melvin 'Big Smoke' Harris", 2000, 4);
-	case 270: GameTextForPlayer(playerid, "Sean 'Sweet' Johnson", 2000, 4);
-	case 271: GameTextForPlayer(playerid, "Lance 'Ryder' Wilson", 2000, 4);
-	case 272: GameTextForPlayer(playerid, "Mafia Boss", 2000, 4);
-	case 273: GameTextForPlayer(playerid, "T-Bone Mendez", 2000, 4);
-	case 274: GameTextForPlayer(playerid, "Paramedic (Emergency Medical Technician)", 2000, 4);
-	case 275: GameTextForPlayer(playerid, "Paramedic (Emergency Medical Technician)", 2000, 4);
-	case 276: GameTextForPlayer(playerid, "Paramedic (Emergency Medical Technician)", 2000, 4);
-	case 277: GameTextForPlayer(playerid, "Firefighter", 2000, 4);
-	case 278: GameTextForPlayer(playerid, "Firefighter", 2000, 4);
-	case 279: GameTextForPlayer(playerid, "Firefighter", 2000, 4);
-	case 280: GameTextForPlayer(playerid, "Los Santos Police Officer", 2000, 4);
-	case 281: GameTextForPlayer(playerid, "San Fierro Police Officer", 2000, 4);
-	case 282: GameTextForPlayer(playerid, "Las Venturas Police Officer", 2000, 4);
-	case 283: GameTextForPlayer(playerid, "Country Sheriff", 2000, 4);
-	case 284: GameTextForPlayer(playerid, "LSPD Motorbike Cop", 2000, 4);
-	case 285: GameTextForPlayer(playerid, "S.W.A.T. Special Forces", 2000, 4);
-	case 286: GameTextForPlayer(playerid, "Federal Agent", 2000, 4);
-	case 287: GameTextForPlayer(playerid, "San Andreas Army", 2000, 4);
-	case 288: GameTextForPlayer(playerid, "Desert Sheriff", 2000, 4);
-	case 289: GameTextForPlayer(playerid, "Zero", 2000, 4);
-	case 290: GameTextForPlayer(playerid, "Ken Rosenberg", 2000, 4);
-	case 291: GameTextForPlayer(playerid, "Kent Paul", 2000, 4);
-	case 292: GameTextForPlayer(playerid, "Cesar Vialpando", 2000, 4);
-	case 293: GameTextForPlayer(playerid, "Jeffery 'OG Loc' Martin/Cross", 2000, 4);
-	case 294: GameTextForPlayer(playerid, "Wu Zi Mu (Woozie)", 2000, 4);
-	case 295: GameTextForPlayer(playerid, "Michael Toreno", 2000, 4);
-	case 296: GameTextForPlayer(playerid, "Jizzy B", 2000, 4);
-	case 297: GameTextForPlayer(playerid, "Madd Dogg", 2000, 4);
-	case 298: GameTextForPlayer(playerid, "Catalina", 2000, 4);
-	case 299: GameTextForPlayer(playerid, "Claude Speed", 2000, 4);
-
+		case 0: GameTextForPlayer(playerid, "Carl 'CJ' Johnson", 2000, 4);
+		case 1: GameTextForPlayer(playerid, "The Truth", 2000, 4);
+		case 2: GameTextForPlayer(playerid, "Maccer", 2000, 4);
+		case 3: GameTextForPlayer(playerid, "Andre", 2000, 4);
+		case 4: GameTextForPlayer(playerid, "Barry 'Big Bear' Thorne (Thin)", 2000, 4);
+		case 5: GameTextForPlayer(playerid, "Barry 'Big Bear' Thorne (Big)", 2000, 4);
+		case 6: GameTextForPlayer(playerid, "Emmet", 2000, 4);
+		case 7: GameTextForPlayer(playerid, "Taxi Driver/Train Driver", 2000, 4);
+		case 8: GameTextForPlayer(playerid, "Janitor", 2000, 4);
+		case 9: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 10: GameTextForPlayer(playerid, "Old Woman", 2000, 4);
+		case 11: GameTextForPlayer(playerid, "Casino Croupier", 2000, 4);
+		case 12: GameTextForPlayer(playerid, "Rich Woman", 2000, 4);
+		case 13: GameTextForPlayer(playerid, "Street Girl", 2000, 4);
+		case 14: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 15: GameTextForPlayer(playerid, "Mr.Whittaker (RS Haul Owner)", 2000, 4);
+		case 16: GameTextForPlayer(playerid, "Airport Ground Worker", 2000, 4);
+		case 17: GameTextForPlayer(playerid, "Businessman", 2000, 4);
+		case 18: GameTextForPlayer(playerid, "Beach Visitor", 2000, 4);
+		case 19: GameTextForPlayer(playerid, "DJ", 2000, 4);
+		case 20: GameTextForPlayer(playerid, "Rich Guy (Madd Dogg's Manager", 2000, 4);
+		case 21: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 22: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 23: GameTextForPlayer(playerid, "BMXer", 2000, 4);
+		case 24: GameTextForPlayer(playerid, "Madd Dogg's Bodyguard", 2000, 4);
+		case 25: GameTextForPlayer(playerid, "Madd Dogg's Bodyguard", 2000, 4);
+		case 26: GameTextForPlayer(playerid, "Backpacker", 2000, 4);
+		case 27: GameTextForPlayer(playerid, "Construction Work", 2000, 4);
+		case 28: GameTextForPlayer(playerid, "Drug Dealer", 2000, 4);
+		case 29: GameTextForPlayer(playerid, "Drug Dealer", 2000, 4);
+		case 30: GameTextForPlayer(playerid, "Drug Dealer", 2000, 4);
+		case 31: GameTextForPlayer(playerid, "Farm Town Inhabitant", 2000, 4);
+		case 32: GameTextForPlayer(playerid, "Farm Town Inhabitant", 2000, 4);
+		case 33: GameTextForPlayer(playerid, "Farm Town Inhabitant", 2000, 4);
+		case 34: GameTextForPlayer(playerid, "Farm Town Inhabitant", 2000, 4);
+		case 35: GameTextForPlayer(playerid, "Gardener", 2000, 4);
+		case 36: GameTextForPlayer(playerid, "Golfer", 2000, 4);
+		case 37: GameTextForPlayer(playerid, "Golfer", 2000, 4);
+		case 38: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 39: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 40: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 41: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 42: GameTextForPlayer(playerid, "Jethro", 2000, 4);
+		case 43: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 44: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 45: GameTextForPlayer(playerid, "Beach Visitor", 2000, 4);
+		case 46: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 47: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 48: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 49: GameTextForPlayer(playerid, "Snakehead (Da Nang)", 2000, 4);
+		case 50: GameTextForPlayer(playerid, "Mechanic", 2000, 4);
+		case 51: GameTextForPlayer(playerid, "Mountain Biker", 2000, 4);
+		case 52: GameTextForPlayer(playerid, "Unknown", 2000, 4);
+		case 53: GameTextForPlayer(playerid, "Street Girl", 2000, 4);
+		case 54: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 55: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 56: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 57: GameTextForPlayer(playerid, "Feds", 2000, 4);
+		case 58: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 59: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 60: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 61: GameTextForPlayer(playerid, "Pilot", 2000, 4);
+		case 62: GameTextForPlayer(playerid, "Colonel Fuhrberger", 2000, 4);
+		case 63: GameTextForPlayer(playerid, "Prostitute", 2000, 4);
+		case 64: GameTextForPlayer(playerid, "Prostitute", 2000, 4);
+		case 65: GameTextForPlayer(playerid, "Kendl Johnson", 2000, 4);
+		case 66: GameTextForPlayer(playerid, "Pool Player", 2000, 4);
+		case 67: GameTextForPlayer(playerid, "Pool Player", 2000, 4);
+		case 68: GameTextForPlayer(playerid, "Priest/Preacher", 2000, 4);
+		case 69: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 70: GameTextForPlayer(playerid, "Scientist", 2000, 4);
+		case 71: GameTextForPlayer(playerid, "Security Guard", 2000, 4);
+		case 72: GameTextForPlayer(playerid, "Hippy", 2000, 4);
+		case 73: GameTextForPlayer(playerid, "Hippy", 2000, 4);
+		case 75: GameTextForPlayer(playerid, "Prostitute", 2000, 4);
+		case 76: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 77: GameTextForPlayer(playerid, "Homeless", 2000, 4);
+		case 78: GameTextForPlayer(playerid, "Homeless", 2000, 4);
+		case 79: GameTextForPlayer(playerid, "Homeless", 2000, 4);
+		case 80: GameTextForPlayer(playerid, "Boxer", 2000, 4);
+		case 81: GameTextForPlayer(playerid, "Boxer", 2000, 4);
+		case 82: GameTextForPlayer(playerid, "Black Elvis", 2000, 4);
+		case 83: GameTextForPlayer(playerid, "White Elvis", 2000, 4);
+		case 84: GameTextForPlayer(playerid, "Blue Elvis", 2000, 4);
+		case 85: GameTextForPlayer(playerid, "Prostitute", 2000, 4);
+		case 86: GameTextForPlayer(playerid, "Ryder With Robbery Mask", 2000, 4);
+		case 87: GameTextForPlayer(playerid, "Stripper", 2000, 4);
+		case 88: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 89: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 90: GameTextForPlayer(playerid, "Jogger", 2000, 4);
+		case 91: GameTextForPlayer(playerid, "Rich Woman", 2000, 4);
+		case 92: GameTextForPlayer(playerid, "Rollerskater", 2000, 4);
+		case 93: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 94: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 95: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 96: GameTextForPlayer(playerid, "Jogger", 2000, 4);
+		case 97: GameTextForPlayer(playerid, "Lifeguard", 2000, 4);
+		case 98: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 99: GameTextForPlayer(playerid, "Homeless", 2000, 4);
+		case 100: GameTextForPlayer(playerid, "Biker", 2000, 4);
+		case 101: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 102: GameTextForPlayer(playerid, "Balla", 2000, 4);
+		case 103: GameTextForPlayer(playerid, "Balla", 2000, 4);
+		case 104: GameTextForPlayer(playerid, "Balla", 2000, 4);
+		case 105: GameTextForPlayer(playerid, "Grove Street Families", 2000, 4);
+		case 106: GameTextForPlayer(playerid, "Grove Street Families", 2000, 4);
+		case 107: GameTextForPlayer(playerid, "Grove Street Families", 2000, 4);
+		case 108: GameTextForPlayer(playerid, "Los Santos Vagos", 2000, 4);
+		case 109: GameTextForPlayer(playerid, "Los Santos Vagos", 2000, 4);
+		case 110: GameTextForPlayer(playerid, "Los Santos Vagos", 2000, 4);
+		case 111: GameTextForPlayer(playerid, "The Russian Mafia", 2000, 4);
+		case 112: GameTextForPlayer(playerid, "The Russian Mafia", 2000, 4);
+		case 113: GameTextForPlayer(playerid, "The Russian Mafia", 2000, 4);
+		case 114: GameTextForPlayer(playerid, "Varios Los Aztecas", 2000, 4);
+		case 115: GameTextForPlayer(playerid, "Varios Los Aztecas", 2000, 4);
+		case 116: GameTextForPlayer(playerid, "Varios Los Aztecas", 2000, 4);
+		case 117: GameTextForPlayer(playerid, "Triad", 2000, 4);
+		case 118: GameTextForPlayer(playerid, "Triad", 2000, 4);
+		case 119: GameTextForPlayer(playerid, "Johhny Sindacco", 2000, 4);
+		case 120: GameTextForPlayer(playerid, "Triad Boss", 2000, 4);
+		case 121: GameTextForPlayer(playerid, "Da Nang Boy", 2000, 4);
+		case 122: GameTextForPlayer(playerid, "Da Nang Boy", 2000, 4);
+		case 123: GameTextForPlayer(playerid, "Da Nang Boy", 2000, 4);
+		case 124: GameTextForPlayer(playerid, "Mafia", 2000, 4);
+		case 125: GameTextForPlayer(playerid, "Mafia", 2000, 4);
+		case 126: GameTextForPlayer(playerid, "Mafia", 2000, 4);
+		case 127: GameTextForPlayer(playerid, "Mafia", 2000, 4);
+		case 128: GameTextForPlayer(playerid, "Farm Inhabitant", 2000, 4);
+		case 129: GameTextForPlayer(playerid, "Farm Inhabitant", 2000, 4);
+		case 130: GameTextForPlayer(playerid, "Farm Inhabitant", 2000, 4);
+		case 131: GameTextForPlayer(playerid, "Farm Inhabitant", 2000, 4);
+		case 132: GameTextForPlayer(playerid, "Farm Inhabitant", 2000, 4);
+		case 133: GameTextForPlayer(playerid, "Farm Inhabitant", 2000, 4);
+		case 134: GameTextForPlayer(playerid, "Homeless", 2000, 4);
+		case 135: GameTextForPlayer(playerid, "Homeless", 2000, 4);
+		case 136: GameTextForPlayer(playerid, "Homeless", 2000, 4);
+		case 137: GameTextForPlayer(playerid, "Homeless", 2000, 4);
+		case 138: GameTextForPlayer(playerid, "Beach Visitor", 2000, 4);
+		case 139: GameTextForPlayer(playerid, "Beach Visitor", 2000, 4);
+		case 140: GameTextForPlayer(playerid, "Beach Visitor", 2000, 4);
+		case 141: GameTextForPlayer(playerid, "Businesswoman", 2000, 4);
+		case 142: GameTextForPlayer(playerid, "Taxi Driver", 2000, 4);
+		case 143: GameTextForPlayer(playerid, "Crack Maker", 2000, 4);
+		case 144: GameTextForPlayer(playerid, "Crack Maker", 2000, 4);
+		case 145: GameTextForPlayer(playerid, "Crack Maker", 2000, 4);
+		case 146: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 147: GameTextForPlayer(playerid, "Businessman", 2000, 4);
+		case 148: GameTextForPlayer(playerid, "Businesswoman", 2000, 4);
+		case 149: GameTextForPlayer(playerid, "Big Smoke Armored", 2000, 4);
+		case 150: GameTextForPlayer(playerid, "Businesswoman", 2000, 4);
+		case 151: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 152: GameTextForPlayer(playerid, "Prostitute", 2000, 4);
+		case 153: GameTextForPlayer(playerid, "Construction Worker", 2000, 4);
+		case 154: GameTextForPlayer(playerid, "Beach Visitor", 2000, 4);
+		case 155: GameTextForPlayer(playerid, "Well Stacked Pizza Worker", 2000, 4);
+		case 156: GameTextForPlayer(playerid, "Barber", 2000, 4);
+		case 157: GameTextForPlayer(playerid, "Hillbilly", 2000, 4);
+		case 158: GameTextForPlayer(playerid, "Farmer", 2000, 4);
+		case 159: GameTextForPlayer(playerid, "Hillbilly", 2000, 4);
+		case 160: GameTextForPlayer(playerid, "Hillbilly", 2000, 4);
+		case 161: GameTextForPlayer(playerid, "Farmer", 2000, 4);
+		case 162: GameTextForPlayer(playerid, "Hillbilly", 2000, 4);
+		case 163: GameTextForPlayer(playerid, "Black Bouncer", 2000, 4);
+		case 164: GameTextForPlayer(playerid, "White Bouncer", 2000, 4);
+		case 165: GameTextForPlayer(playerid, "White MIB Agent", 2000, 4);
+		case 166: GameTextForPlayer(playerid, "Black MIB Agent", 2000, 4);
+		case 167: GameTextForPlayer(playerid, "Cluckin' Bell Worker", 2000, 4);
+		case 168: GameTextForPlayer(playerid, "Hotdog/Chilli Dog Vendor", 2000, 4);
+		case 169: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 170: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 171: GameTextForPlayer(playerid, "Blackjack Dealer", 2000, 4);
+		case 172: GameTextForPlayer(playerid, "Casino Croupier", 2000, 4);
+		case 173: GameTextForPlayer(playerid, "San Fierro Rifa", 2000, 4);
+		case 174: GameTextForPlayer(playerid, "San Fierro Rifa", 2000, 4);
+		case 175: GameTextForPlayer(playerid, "San Fierro Rifa", 2000, 4);
+		case 176: GameTextForPlayer(playerid, "Barber", 2000, 4);
+		case 177: GameTextForPlayer(playerid, "Barber", 2000, 4);
+		case 178: GameTextForPlayer(playerid, "Whore", 2000, 4);
+		case 179: GameTextForPlayer(playerid, "Ammunation Salesman", 2000, 4);
+		case 180: GameTextForPlayer(playerid, "Tattoo Artist", 2000, 4);
+		case 181: GameTextForPlayer(playerid, "Punk", 2000, 4);
+		case 182: GameTextForPlayer(playerid, "Cab Driver", 2000, 4);
+		case 183: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 184: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 185: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 186: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 187: GameTextForPlayer(playerid, "Businessman", 2000, 4);
+		case 188: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 189: GameTextForPlayer(playerid, "Valet", 2000, 4);
+		case 190: GameTextForPlayer(playerid, "Barbara Schternvart", 2000, 4);
+		case 191: GameTextForPlayer(playerid, "Helena Wankstein", 2000, 4);
+		case 192: GameTextForPlayer(playerid, "Michelle Cannes", 2000, 4);
+		case 193: GameTextForPlayer(playerid, "Katie Zhan", 2000, 4);
+		case 194: GameTextForPlayer(playerid, "Millie Perkins", 2000, 4);
+		case 195: GameTextForPlayer(playerid, "Denise Robinson", 2000, 4);
+		case 196: GameTextForPlayer(playerid, "Farm Town Inhabitant", 2000, 4);
+		case 197: GameTextForPlayer(playerid, "Hillbilly", 2000, 4);
+		case 198: GameTextForPlayer(playerid, "Farm Town Inhabitant", 2000, 4);
+		case 199: GameTextForPlayer(playerid, "Farm Town Inhabitant", 2000, 4);
+		case 200: GameTextForPlayer(playerid, "Hillbilly", 2000, 4);
+		case 201: GameTextForPlayer(playerid, "Farmer", 2000, 4);
+		case 202: GameTextForPlayer(playerid, "Farmer", 2000, 4);
+		case 203: GameTextForPlayer(playerid, "Karate Teacher", 2000, 4);
+		case 204: GameTextForPlayer(playerid, "Karate Teacher", 2000, 4);
+		case 205: GameTextForPlayer(playerid, "Burger Shot Cashier", 2000, 4);
+		case 206: GameTextForPlayer(playerid, "Cab Driver", 2000, 4);
+		case 207: GameTextForPlayer(playerid, "Prostitute", 2000, 4);
+		case 208: GameTextForPlayer(playerid, "Su Xi Mu (Suzie)", 2000, 4);
+		case 209: GameTextForPlayer(playerid, "Noodle Stand Vendor", 2000, 4);
+		case 210: GameTextForPlayer(playerid, "Boater", 2000, 4);
+		case 211: GameTextForPlayer(playerid, "Clothes Shop Staff", 2000, 4);
+		case 212: GameTextForPlayer(playerid, "Homeless", 2000, 4);
+		case 213: GameTextForPlayer(playerid, "Weird Old Man", 2000, 4);
+		case 214: GameTextForPlayer(playerid, "Waitress (Maria Latore)", 2000, 4);
+		case 215: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 216: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 217: GameTextForPlayer(playerid, "Clothes Shop Staff", 2000, 4);
+		case 218: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 219: GameTextForPlayer(playerid, "Rich Woman", 2000, 4);
+		case 220: GameTextForPlayer(playerid, "Cab Driver", 2000, 4);
+		case 221: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 222: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 223: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 224: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 225: GameTextForPlayer(playerid, "Hillbilly", 2000, 4);
+		case 226: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 227: GameTextForPlayer(playerid, "Businessman", 2000, 4);
+		case 228: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 229: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 230: GameTextForPlayer(playerid, "Homeless", 2000, 4);
+		case 231: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 232: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 233: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 234: GameTextForPlayer(playerid, "Cab Driver", 2000, 4);
+		case 235: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 236: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 237: GameTextForPlayer(playerid, "Prostitute", 2000, 4);
+		case 238: GameTextForPlayer(playerid, "Prostitute", 2000, 4);
+		case 239: GameTextForPlayer(playerid, "Homeless", 2000, 4);
+		case 240: GameTextForPlayer(playerid, "The D.A", 2000, 4);
+		case 241: GameTextForPlayer(playerid, "Afro American", 2000, 4);
+		case 242: GameTextForPlayer(playerid, "Mexican", 2000, 4);
+		case 243: GameTextForPlayer(playerid, "Prostitute", 2000, 4);
+		case 244: GameTextForPlayer(playerid, "Stripper", 2000, 4);
+		case 245: GameTextForPlayer(playerid, "Prostitute", 2000, 4);
+		case 246: GameTextForPlayer(playerid, "Stripper", 2000, 4);
+		case 247: GameTextForPlayer(playerid, "Biker", 2000, 4);
+		case 248: GameTextForPlayer(playerid, "Biker", 2000, 4);
+		case 249: GameTextForPlayer(playerid, "Pimp", 2000, 4);
+		case 250: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 251: GameTextForPlayer(playerid, "Lifeguard", 2000, 4);
+		case 252: GameTextForPlayer(playerid, "Naked Valet", 2000, 4);
+		case 253: GameTextForPlayer(playerid, "Bus Driver", 2000, 4);
+		case 254: GameTextForPlayer(playerid, "Biker Drug Dealer", 2000, 4);
+		case 255: GameTextForPlayer(playerid, "Chauffeur (Limo Driver)", 2000, 4);
+		case 256: GameTextForPlayer(playerid, "Stripper", 2000, 4);
+		case 257: GameTextForPlayer(playerid, "Stripper", 2000, 4);
+		case 258: GameTextForPlayer(playerid, "Heckler", 2000, 4);
+		case 259: GameTextForPlayer(playerid, "Heckler", 2000, 4);
+		case 260: GameTextForPlayer(playerid, "Construction Worker", 2000, 4);
+		case 261: GameTextForPlayer(playerid, "Cab Driver", 2000, 4);
+		case 262: GameTextForPlayer(playerid, "Cab Driver", 2000, 4);
+		case 263: GameTextForPlayer(playerid, "Normal Ped", 2000, 4);
+		case 264: GameTextForPlayer(playerid, "Clown", 2000, 4);
+		case 265: GameTextForPlayer(playerid, "Officer Frank Tenpenny (Corrupt Cop)", 2000, 4);
+		case 266: GameTextForPlayer(playerid, "Officer Eddie Pulaski (Corrupt Cop)", 2000, 4);
+		case 267: GameTextForPlayer(playerid, "Officer Jimmy Hernandez", 2000, 4);
+		case 268: GameTextForPlayer(playerid, "Dwaine/Dwayne", 2000, 4);
+		case 269: GameTextForPlayer(playerid, "Melvin 'Big Smoke' Harris", 2000, 4);
+		case 270: GameTextForPlayer(playerid, "Sean 'Sweet' Johnson", 2000, 4);
+		case 271: GameTextForPlayer(playerid, "Lance 'Ryder' Wilson", 2000, 4);
+		case 272: GameTextForPlayer(playerid, "Mafia Boss", 2000, 4);
+		case 273: GameTextForPlayer(playerid, "T-Bone Mendez", 2000, 4);
+		case 274: GameTextForPlayer(playerid, "Paramedic (Emergency Medical Technician)", 2000, 4);
+		case 275: GameTextForPlayer(playerid, "Paramedic (Emergency Medical Technician)", 2000, 4);
+		case 276: GameTextForPlayer(playerid, "Paramedic (Emergency Medical Technician)", 2000, 4);
+		case 277: GameTextForPlayer(playerid, "Firefighter", 2000, 4);
+		case 278: GameTextForPlayer(playerid, "Firefighter", 2000, 4);
+		case 279: GameTextForPlayer(playerid, "Firefighter", 2000, 4);
+		case 280: GameTextForPlayer(playerid, "Los Santos Police Officer", 2000, 4);
+		case 281: GameTextForPlayer(playerid, "San Fierro Police Officer", 2000, 4);
+		case 282: GameTextForPlayer(playerid, "Las Venturas Police Officer", 2000, 4);
+		case 283: GameTextForPlayer(playerid, "Country Sheriff", 2000, 4);
+		case 284: GameTextForPlayer(playerid, "LSPD Motorbike Cop", 2000, 4);
+		case 285: GameTextForPlayer(playerid, "S.W.A.T. Special Forces", 2000, 4);
+		case 286: GameTextForPlayer(playerid, "Federal Agent", 2000, 4);
+		case 287: GameTextForPlayer(playerid, "San Andreas Army", 2000, 4);
+		case 288: GameTextForPlayer(playerid, "Desert Sheriff", 2000, 4);
+		case 289: GameTextForPlayer(playerid, "Zero", 2000, 4);
+		case 290: GameTextForPlayer(playerid, "Ken Rosenberg", 2000, 4);
+		case 291: GameTextForPlayer(playerid, "Kent Paul", 2000, 4);
+		case 292: GameTextForPlayer(playerid, "Cesar Vialpando", 2000, 4);
+		case 293: GameTextForPlayer(playerid, "Jeffery 'OG Loc' Martin/Cross", 2000, 4);
+		case 294: GameTextForPlayer(playerid, "Wu Zi Mu (Woozie)", 2000, 4);
+		case 295: GameTextForPlayer(playerid, "Michael Toreno", 2000, 4);
+		case 296: GameTextForPlayer(playerid, "Jizzy B", 2000, 4);
+		case 297: GameTextForPlayer(playerid, "Madd Dogg", 2000, 4);
+		case 298: GameTextForPlayer(playerid, "Catalina", 2000, 4);
+		case 299: GameTextForPlayer(playerid, "Claude Speed", 2000, 4);
 	}
 	return 0;
 }
@@ -941,7 +901,6 @@ CMD:help(playerid)
 	//SendClientMessage(playerid,COLOR_WHITE,"Введите /credits чтобы прочитать про авторов");
 	return true;
 }
-
 CMD:commands(playerid)
 {
 	SendClientMessage(playerid,COLOR_DPT,"===== Страница 1/3 =====");
@@ -954,7 +913,6 @@ CMD:commands(playerid)
 	SendClientMessage(playerid,COLOR_DPT,"===== След. страница: /commands2 =====");
 	return true;
 }
-
 CMD:commands2(playerid)
 {
 	SendClientMessage(playerid,COLOR_DPT,"===== Страница 2/3 =====");
@@ -966,7 +924,6 @@ CMD:commands2(playerid)
 	SendClientMessage(playerid,COLOR_DPT,"===== След. страница: /commands3 =====");
 	return true;
 }
-
 CMD:commands3(playerid)
 {
 	SendClientMessage(playerid,COLOR_DPT,"===== Страница 3/3 =====");
@@ -978,14 +935,12 @@ CMD:commands3(playerid)
 	SendClientMessage(playerid,COLOR_DPT,"===== Пред. страница: /commands2 =====");
 	return true;
 }
-
 CMD:killall(playerid)
 {
 	if(IsPlayerAdmin(playerid)) for(new i=0; i<MAX_PLAYERS; i++) SetPlayerHealth(i,0);
 	else SendClientMessage(playerid,COLOR_RED,"GameMode.Error: Вы не Администратор! Требуется RCON доступ.");
 	return true;
 }
-
 CMD:iddqd(playerid)
 {
 	switch(God[playerid])
@@ -1009,27 +964,23 @@ CMD:iddqd(playerid)
 	}
 	return true;
 }
-
 //Возможности
 CMD:soulsphere(playerid)
 {
 	SetPlayerHealth(playerid,200);
 	return true;
 }
-
 CMD:megasphere(playerid)
 {
 	SetPlayerHealth(playerid,200);
 	SetPlayerArmour(playerid,200);
 	return true;
 }
-
 CMD:heal(playerid)
 {
 	SetPlayerHealth(playerid,100);
 	return true;
 }
-
 CMD:kill(playerid)
 {
 	new pName[MAX_PLAYER_NAME], string[39 + MAX_PLAYER_NAME];
@@ -1039,7 +990,6 @@ CMD:kill(playerid)
 	SetPlayerHealth(playerid,0);
 	return true;
 }
-
 CMD:fix(playerid)
 {
 	if(!IsPlayerInAnyVehicle(playerid)) return SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
@@ -1047,19 +997,16 @@ CMD:fix(playerid)
 	SendClientMessage(playerid, COLOR_YELLOW, "Ваша машина успешно отремонтирована.");
 	return true;
 }
-
 CMD:para(playerid)
 {
 	GivePlayerWeapon(playerid, 46, 1);
 	return true;
 }
-
 CMD:jetpack(playerid)
 {
 	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_USEJETPACK);
 	return true;
 }
-
 CMD:flip(playerid)
 {
 	if(!IsPlayerInAnyVehicle(playerid))
@@ -1076,7 +1023,6 @@ CMD:flip(playerid)
 	PlayerPlaySound(playerid, 1085, 0.0, 0.0, 0.0);
 	return true;
 }
-
 CMD:fstyle(playerid)
 {
 	SendClientMessage(playerid,COLOR_DPT,"===== Стили боя =====");
@@ -1088,19 +1034,16 @@ CMD:fstyle(playerid)
 	SendClientMessage(playerid,COLOR_WHITE,"=== /fsnormal (Вернуть обычное состояние)");
 	return true;
 }
-
 CMD:boxing(playerid)
 {
 	SetPlayerFightingStyle (playerid, FIGHT_STYLE_BOXING);
 	return true;
 }
-
 CMD:kungfu(playerid)
 {
 	SetPlayerFightingStyle (playerid, FIGHT_STYLE_KUNGFU);
 	return true;
 }
-
 CMD:kneehead(playerid)
 {
 	SetPlayerFightingStyle (playerid, FIGHT_STYLE_KNEEHEAD);
@@ -4357,7 +4300,6 @@ CMD:skydrift(playerid)
 	}
 	return true;
 }
-
 CMD:drift1(playerid)
 {	
 	new string[256];
@@ -4386,7 +4328,6 @@ CMD:drift1(playerid)
 	}
 	return true;
 }
-
 CMD:drift2(playerid)
 {	
 	new string[256];
@@ -4401,7 +4342,6 @@ CMD:drift2(playerid)
 			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 2 (/drift2)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
 			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 2! ~G~", 5000, 5);
-
 		}
 		else
 		{
@@ -4437,7 +4377,6 @@ CMD:drift3(playerid)
 		else
 		{
 			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
-
 		}
 	}
 	else
@@ -4451,7 +4390,6 @@ CMD:drift3(playerid)
 	}
 	return true;
 }
-
 CMD:drift4(playerid)
 {	
 	new string[256];
@@ -4483,7 +4421,6 @@ CMD:drift4(playerid)
 	}
 	return true;
 }
-
 CMD:drift5(playerid)
 {	
 	new string[256];
@@ -4577,7 +4514,6 @@ CMD:drift7(playerid)
 	}
 	return true;
 }
-
 CMD:drift8(playerid)
 {	
 	new string[256];
@@ -4638,8 +4574,6 @@ CMD:drift9(playerid)
 		SendClientMessageToAll(COLOR_YELLOW, string);
 		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 9! ~G~", 5000, 5);
 	}
-
-
 	return true;
 }
 CMD:drift10(playerid)
@@ -4671,8 +4605,6 @@ CMD:drift10(playerid)
 		SendClientMessageToAll(COLOR_YELLOW, string);
 		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 10! ~G~", 5000, 5);
 	}
-
-
 	return true;
 }
 CMD:drift11(playerid)
@@ -4704,8 +4636,6 @@ CMD:drift11(playerid)
 		SendClientMessageToAll(COLOR_YELLOW, string);
 		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 11! ~G~", 5000, 5);
 	}
-
-
 	return true;
 }
 CMD:drift12(playerid)
@@ -4737,12 +4667,7 @@ CMD:drift12(playerid)
 		SendClientMessageToAll(COLOR_YELLOW, string);
 		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 12! ~G~", 5000, 5);
 	}
-
-
 	return true;
-
-
-
 }
 CMD:drift13(playerid)
 {	
@@ -4773,8 +4698,6 @@ CMD:drift13(playerid)
 		SendClientMessageToAll(COLOR_YELLOW, string);
 		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 13! ~G~", 5000, 5);
 	}
-
-
 	return true;
 }
 CMD:drift14(playerid)
@@ -4806,8 +4729,6 @@ CMD:drift14(playerid)
 		SendClientMessageToAll(COLOR_YELLOW, string);
 		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 14! ~G~", 5000, 5);
 	}
-
-
 	return true;
 }
 CMD:drift15(playerid)
@@ -5289,7 +5210,6 @@ CMD:drift30(playerid)
 			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 30 (/drift30)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
 			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 30! ~G~", 5000, 5);
-
 		}
 		else
 		{
@@ -6020,7 +5940,7 @@ CMD:drift53(playerid)
 	}
 	return true;
 }
-
+//TODO:
 //return SendClientMessage(playerid,COLOR_RED,"GameMode.Error: Неизвестная команда, доступные команды ищите в /help");
 
 public SendPlayerFormattedText(playerid, const str[], define)
