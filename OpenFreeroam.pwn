@@ -111,8 +111,8 @@ main()
 //Random Messages//
 static const RandMessages[][] =
 {
-	"{0088FF}РЎРћР’Р•Рў: {FFFFFF}Р“РѕСЂРёС‚ РјР°С€РёРЅР°? Р’РІРµРґРё /fix Рё РЅРµС‚ РїСЂРѕР±Р»РµРј!",
-	"{0088FF}РЎРћР’Р•Рў: {FFFFFF}РҐРѕС‡РµС€СЊ Р±С‹С‚СЊ СЌР»РёС‚РЅС‹Рј РЅСѓР±РѕРіР°РЅРµСЂРѕРј? Р’РІРµРґРё /noobpack Рё РїРѕРіСЂСѓР·РёСЃСЊ РІ СЌРєС€РЅ."
+	"{0088FF}СОВЕТ: {FFFFFF}Горит машина? Введи /fix и нет проблем!",
+	"{0088FF}СОВЕТ: {FFFFFF}Хочешь быть элитным нубоганером? Введи /noobpack и погрузись в экшн."
 };
 
 public OnPlayerPickUpPickup(playerid, pickupid)
@@ -218,13 +218,13 @@ public OnPlayerConnect(playerid)
 	gPlayerLastCitySelectionTick[playerid] = GetTickCount();
 	new pName[MAX_PLAYER_NAME], string[39 + MAX_PLAYER_NAME];
 	GetPlayerName(playerid, pName, sizeof(pName));
-	format(string, sizeof(string), "%s [ID:%d] РїРѕРґРєР»СЋС‡РёР»СЃСЏ.", pName, playerid);
+	format(string, sizeof(string), "%s [ID:%d] подключился.", pName, playerid);
 	SendClientMessageToAll(COLOR_GREY, string);
 	SendDeathMessage(INVALID_PLAYER_ID,playerid,200);
-	SendClientMessage(playerid,COLOR_WHITE,"Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° СЃРµСЂРІРµСЂ DartPower Team.");
-	SendClientMessage(playerid,COLOR_YELLOW,"Р’РІРµРґРёС‚Рµ /help С‡С‚РѕР±С‹ РїРѕСЃРјРѕС‚СЂРµС‚СЊ РїРѕРјРѕС‰СЊ");
-	SendClientMessage(playerid,COLOR_ORANGE,"Р’РІРµРґРёС‚Рµ /rules С‡С‚РѕР±С‹ РїРѕСЃРјРѕС‚СЂРµС‚СЊ РїСЂР°РІРёР»Р°");
-	SendClientMessage(playerid,COLOR_DPT,"РџСЂСЏС‚РЅРѕР№ РёРіСЂС‹ ^^");
+	SendClientMessage(playerid,COLOR_WHITE,"Добро пожаловать на сервер DartPower Team.");
+	SendClientMessage(playerid,COLOR_YELLOW,"Введите /help чтобы посмотреть помощь");
+	SendClientMessage(playerid,COLOR_ORANGE,"Введите /rules чтобы посмотреть правила");
+	SendClientMessage(playerid,COLOR_DPT,"Прятной игры ^^");
 	gActivePlayers[playerid]++;
 	gLastGaveCash[playerid] = GetTickCount();
 	new strings[15];
@@ -266,7 +266,7 @@ public OnPlayerDisconnect(playerid, reason)
 {
 	new pName[MAX_PLAYER_NAME], string[39 + MAX_PLAYER_NAME];
 	GetPlayerName(playerid, pName, sizeof(pName));
-	format(string, sizeof(string), "%s [ID:%d] РѕС‚РєР»СЋС‡РёР»СЃСЏ. %s", pName, playerid, reasons[reason]);
+	format(string, sizeof(string), "%s [ID:%d] отключился. %s", pName, playerid, reasons[reason]);
 	SendClientMessageToAll(COLOR_GREY, string);
 	SendDeathMessage(INVALID_PLAYER_ID,playerid,201);
 	gActivePlayers[playerid]--;
@@ -895,50 +895,50 @@ public OnPlayerCommandText(playerid, cmdtext[])
 
 CMD:help(playerid)
 {
-	SendClientMessage(playerid,COLOR_DPT,"===== РџРѕРјРѕС‰СЊ =====");
-	SendClientMessage(playerid,COLOR_WHITE,"Р’РІРµРґРёС‚Рµ /commands С‡С‚РѕР±С‹ РїРѕСЃРјРѕС‚СЂРµС‚СЊ СЃРїРёСЃРѕРє РєРѕРјРјР°РЅРґ");
-	//SendClientMessage(playerid,COLOR_WHITE,"Р’РІРµРґРёС‚Рµ /rules С‡С‚РѕР±С‹ РїСЂРѕС‡РёС‚Р°С‚СЊ РїСЂР°РІРёР»Р° СЃРµСЂРІРµСЂР°");
-	//SendClientMessage(playerid,COLOR_WHITE,"Р’РІРµРґРёС‚Рµ /credits С‡С‚РѕР±С‹ РїСЂРѕС‡РёС‚Р°С‚СЊ РїСЂРѕ Р°РІС‚РѕСЂРѕРІ");
+	SendClientMessage(playerid,COLOR_DPT,"===== Помощь =====");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /commands чтобы посмотреть список комманд");
+	//SendClientMessage(playerid,COLOR_WHITE,"Введите /rules чтобы прочитать правила сервера");
+	//SendClientMessage(playerid,COLOR_WHITE,"Введите /credits чтобы прочитать про авторов");
 	return true;
 }
 CMD:commands(playerid)
 {
-	SendClientMessage(playerid,COLOR_DPT,"===== РЎС‚СЂР°РЅРёС†Р° 1/3 =====");
-	SendClientMessage(playerid,COLOR_WHITE,"Р’РІРµРґРёС‚Рµ /kill С‡С‚РѕР±С‹ СѓР±РёС‚СЊ СЃРµР±СЏ");
-	SendClientMessage(playerid,COLOR_WHITE,"Р’РІРµРґРёС‚Рµ /fix С‡С‚РѕР±С‹ РїРѕС‡РёРЅРёС‚СЊ С‚Р°С‡РєСѓ");
-	SendClientMessage(playerid,COLOR_WHITE,"Р’РІРµРґРёС‚Рµ /flip С‡С‚РѕР±С‹ РїРµСЂРµРІРµСЂРЅСѓС‚СЊ С‚Р°С‡РєСѓ");
-	SendClientMessage(playerid,COLOR_WHITE,"Р’РІРµРґРёС‚Рµ /para С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ РїР°СЂР°С€СЋС‚");
-	SendClientMessage(playerid,COLOR_WHITE,"Р’РІРµРґРёС‚Рµ /jetpack С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ РґР¶РµС‚-РїР°Рє");
-	SendClientMessage(playerid,COLOR_WHITE,"Р’РІРµРґРёС‚Рµ /weapons С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ РѕСЂСѓР¶РёСЏ");
-	SendClientMessage(playerid,COLOR_DPT,"===== РЎР»РµРґ. СЃС‚СЂР°РЅРёС†Р°: /commands2 =====");
+	SendClientMessage(playerid,COLOR_DPT,"===== Страница 1/3 =====");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /kill чтобы убить себя");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /fix чтобы починить тачку");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /flip чтобы перевернуть тачку");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /para чтобы получить парашют");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /jetpack чтобы получить джет-пак");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /weapons чтобы получить оружия");
+	SendClientMessage(playerid,COLOR_DPT,"===== След. страница: /commands2 =====");
 	return true;
 }
 CMD:commands2(playerid)
 {
-	SendClientMessage(playerid,COLOR_DPT,"===== РЎС‚СЂР°РЅРёС†Р° 2/3 =====");
-	SendClientMessage(playerid,COLOR_WHITE,"Р’РІРµРґРёС‚Рµ /teleports С‡С‚РѕР±С‹ РїРѕСЃРјРѕС‚СЂРµС‚СЊ СЃРїРёСЃРѕРє С‚РµР»РµРїРѕСЂС‚РѕРІ РїРѕ РєР°СЂС‚Рµ");
-	SendClientMessage(playerid,COLOR_WHITE,"Р’РІРµРґРёС‚Рµ /cars С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ РјР°С€РёРЅС‹");
-	SendClientMessage(playerid,COLOR_WHITE,"Р’РІРµРґРёС‚Рµ /tcars С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ С‚СЋРЅРёРЅРіРѕРІР°РЅРЅС‹Рµ РјР°С€РёРЅС‹");
-	SendClientMessage(playerid,COLOR_WHITE,"Р’РІРµРґРёС‚Рµ /fstyle С‡С‚РѕР±С‹ РёР·РјРµРЅРёС‚СЊ СЃС‚РёР»СЊ Р±РѕСЏ");
-	SendClientMessage(playerid,COLOR_WHITE,"Р’РІРµРґРёС‚Рµ /colors С‡С‚РѕР±С‹ СЃРјРµРЅРёС‚СЊ С†РІРµС‚ РЅРёРєР°");
-	SendClientMessage(playerid,COLOR_DPT,"===== РЎР»РµРґ. СЃС‚СЂР°РЅРёС†Р°: /commands3 =====");
+	SendClientMessage(playerid,COLOR_DPT,"===== Страница 2/3 =====");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /teleports чтобы посмотреть список телепортов по карте");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /cars чтобы получить машины");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /tcars чтобы получить тюнингованные машины");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /fstyle чтобы изменить стиль боя");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /colors чтобы сменить цвет ника");
+	SendClientMessage(playerid,COLOR_DPT,"===== След. страница: /commands3 =====");
 	return true;
 }
 CMD:commands3(playerid)
 {
-	SendClientMessage(playerid,COLOR_DPT,"===== РЎС‚СЂР°РЅРёС†Р° 3/3 =====");
-	SendClientMessage(playerid,COLOR_WHITE,"Р’РІРµРґРёС‚Рµ /soulsphere С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ 200% Р·РґРѕСЂРѕРІСЊСЏ");
-	SendClientMessage(playerid,COLOR_WHITE,"Р’РІРµРґРёС‚Рµ /megasphere С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ 200% Р·РґРѕСЂРѕРІСЊСЏ Рё 200% Р±СЂРѕРЅРё");
-	SendClientMessage(playerid,COLOR_WHITE,"Р’РІРµРґРёС‚Рµ /heal С‡С‚РѕР±С‹ РІС‹Р»РµС‡РёС‚СЃСЏ");
-	SendClientMessage(playerid,COLOR_WHITE,"Р’РІРµРґРёС‚Рµ /killall С‡С‚РѕР±С‹ СѓР±РёС‚СЊ РІСЃРµС… (РўРѕР»СЊРєРѕ РґР»СЏ РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРІ)");
-	SendClientMessage(playerid,COLOR_WHITE,"Р’РІРµРґРёС‚Рµ /iddqd С‡С‚РѕР±С‹ РІРєР»СЋС‡РёС‚СЊ/РІС‹РєР»СЋС‡РёС‚СЊ РЅРµСѓСЏР·РІРёРјРѕСЃС‚СЊ");
-	SendClientMessage(playerid,COLOR_DPT,"===== РџСЂРµРґ. СЃС‚СЂР°РЅРёС†Р°: /commands2 =====");
+	SendClientMessage(playerid,COLOR_DPT,"===== Страница 3/3 =====");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /soulsphere чтобы получить 200% здоровья");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /megasphere чтобы получить 200% здоровья и 200% брони");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /heal чтобы вылечится");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /killall чтобы убить всех (Только для Администраторов)");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /iddqd чтобы включить/выключить неуязвимость");
+	SendClientMessage(playerid,COLOR_DPT,"===== Пред. страница: /commands2 =====");
 	return true;
 }
 CMD:killall(playerid)
 {
 	if(IsPlayerAdmin(playerid)) for(new i=0; i<MAX_PLAYERS; i++) SetPlayerHealth(i,0);
-	else SendClientMessage(playerid,COLOR_RED,"GameMode.Error: Р’С‹ РЅРµ РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ! РўСЂРµР±СѓРµС‚СЃСЏ RCON РґРѕСЃС‚СѓРї.");
+	else SendClientMessage(playerid,COLOR_RED,"GameMode.Error: Вы не Администратор! Требуется RCON доступ.");
 	return true;
 }
 CMD:iddqd(playerid)
@@ -947,7 +947,7 @@ CMD:iddqd(playerid)
 	{
 	case 0:
 		{
-			SendClientMessage(playerid, COLOR_GREEN, "Р’С‹ РІРєР»СЋС‡РёР»Рё РЅРµСѓСЏР·РІРёРјРѕСЃС‚СЊ.");
+			SendClientMessage(playerid, COLOR_GREEN, "Вы включили неуязвимость.");
 			God[playerid] = 1;
 			SetPlayerArmour(playerid, 65535);
 			SetPlayerHealth(playerid, 65535);
@@ -955,7 +955,7 @@ CMD:iddqd(playerid)
 		}
 	case 1:
 		{
-			SendClientMessage(playerid, COLOR_RED, "Р’С‹ РѕС‚РєР»СЋС‡РёР»Рё РЅРµСѓСЏР·РІРёРјРѕСЃС‚СЊ.");
+			SendClientMessage(playerid, COLOR_RED, "Вы отключили неуязвимость.");
 			SetPlayerHealth(playerid, 100);
 			SetPlayerArmour(playerid, 100);
 			God[playerid] = 0;
@@ -964,7 +964,7 @@ CMD:iddqd(playerid)
 	}
 	return true;
 }
-//Р’РѕР·РјРѕР¶РЅРѕСЃС‚Рё
+//Возможности
 CMD:soulsphere(playerid)
 {
 	SetPlayerHealth(playerid,200);
@@ -985,16 +985,16 @@ CMD:kill(playerid)
 {
 	new pName[MAX_PLAYER_NAME], string[39 + MAX_PLAYER_NAME];
 	GetPlayerName(playerid, pName, sizeof(pName));
-	format(string, sizeof(string), "%s [ID:%d] СЃРѕРІРµСЂС€РёР» СЃР°РјРѕСѓР±РёР№СЃС‚РІРѕ.", pName, playerid);
+	format(string, sizeof(string), "%s [ID:%d] совершил самоубийство.", pName, playerid);
 	SendClientMessageToAll(COLOR_RED, string);
 	SetPlayerHealth(playerid,0);
 	return true;
 }
 CMD:fix(playerid)
 {
-	if(!IsPlayerInAnyVehicle(playerid)) return SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+	if(!IsPlayerInAnyVehicle(playerid)) return SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 	RepairVehicle(GetPlayerVehicleID(playerid));
-	SendClientMessage(playerid, COLOR_YELLOW, "Р’Р°С€Р° РјР°С€РёРЅР° СѓСЃРїРµС€РЅРѕ РѕС‚СЂРµРјРѕРЅС‚РёСЂРѕРІР°РЅР°.");
+	SendClientMessage(playerid, COLOR_YELLOW, "Ваша машина успешно отремонтирована.");
 	return true;
 }
 CMD:para(playerid)
@@ -1011,7 +1011,7 @@ CMD:flip(playerid)
 {
 	if(!IsPlayerInAnyVehicle(playerid))
 	{
-		SendClientMessage(playerid, COLOR_RED,"GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+		SendClientMessage(playerid, COLOR_RED,"GameMode.Error: Вы должны быть в машине!");
 		return true;
 	}
 	new Float:PX, Float:PY, Float:PZ, Float:PA;
@@ -1019,19 +1019,19 @@ CMD:flip(playerid)
 	GetVehicleZAngle(GetPlayerVehicleID(playerid), PA);
 	SetVehiclePos(GetPlayerVehicleID(playerid), PX, PY, PZ+1);
 	SetVehicleZAngle(GetPlayerVehicleID(playerid), PA);
-	SendClientMessage(playerid, COLOR_YELLOW, "Р’Р°С€Р° РјР°С€РёРЅР° СѓСЃРїРµС€РЅРѕ РїРµСЂРµРІРµСЂРЅСѓС‚Р°.");
+	SendClientMessage(playerid, COLOR_YELLOW, "Ваша машина успешно перевернута.");
 	PlayerPlaySound(playerid, 1085, 0.0, 0.0, 0.0);
 	return true;
 }
 CMD:fstyle(playerid)
 {
-	SendClientMessage(playerid,COLOR_DPT,"===== РЎС‚РёР»Рё Р±РѕСЏ =====");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /boxing (Р‘РѕРєСЃ)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /kungfu (РљСѓРЅРі-Р¤Сѓ)");
+	SendClientMessage(playerid,COLOR_DPT,"===== Стили боя =====");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /boxing (Бокс)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /kungfu (Кунг-Фу)");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /kneehead (Knee Head)");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /grabkick (Grab Kick)");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /elbow (Elbow)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /fsnormal (Р’РµСЂРЅСѓС‚СЊ РѕР±С‹С‡РЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /fsnormal (Вернуть обычное состояние)");
 	return true;
 }
 CMD:boxing(playerid)
@@ -1066,38 +1066,38 @@ CMD:fsnormal(playerid)
 }
 CMD:colors(playerid)
 {
-	SendClientMessage(playerid,COLOR_DPT,"===== Р¦РІРµС‚Р° РЅРёРєР° =====");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /cgrey {AFAFAF}(РЎРµСЂС‹Р№)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /cgreen {33AA33}(Р—РµР»РµРЅС‹Р№)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /cred {AA3333}(РљСЂР°СЃРЅС‹Р№)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /cyellow {FFFF00}(Р–РµР»С‚С‹Р№)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /cwhite {FFFFFF}(Р‘РµР»С‹Р№)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /cblue {3A47DE}(РЎРёРЅРёР№)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /corange {FF9900}(РћСЂР°РЅСЊР¶РµРІС‹Р№)");
+	SendClientMessage(playerid,COLOR_DPT,"===== Цвета ника =====");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /cgrey {AFAFAF}(Серый)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /cgreen {33AA33}(Зеленый)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /cred {AA3333}(Красный)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /cyellow {FFFF00}(Желтый)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /cwhite {FFFFFF}(Белый)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /cblue {3A47DE}(Синий)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /corange {FF9900}(Ораньжевый)");
 	return true;
 }
 CMD:weapons(playerid)
 {
-	SendClientMessage(playerid,COLOR_DPT,"===== РЎС‚СЂР°РЅРёС†Р° 1/2 =====");
+	SendClientMessage(playerid,COLOR_DPT,"===== Страница 1/2 =====");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /wuzi (Micro Uzi)");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /wtec9 (Tec 9)");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /wcombat (Combat)");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /wsawnoff (Sawn Off)");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /wminigun (Minigun)");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /wrocket (Rocket Launcher)");
-	SendClientMessage(playerid,COLOR_DPT,"===== РЎР»РµРґ. СЃС‚СЂР°РЅРёС†Р°: /weapons2 =====");
+	SendClientMessage(playerid,COLOR_DPT,"===== След. страница: /weapons2 =====");
 	return true;
 }
 CMD:weapons2(playerid)
 {
-	SendClientMessage(playerid,COLOR_DPT,"===== РЎС‚СЂР°РЅРёС†Р° 2/2 =====");
+	SendClientMessage(playerid,COLOR_DPT,"===== Страница 2/2 =====");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /wm4 (M4)");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /wgrenade (Grenade)");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /wsniper (Sniper Rifle)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /propack (РџР°Рє РѕСЂСѓР¶РёСЏ РџСЂРѕС„Рё)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /noobpack (РќСѓР±РѕРіР°РЅС‹)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /idkfa (РџР°Рє РѕСЂСѓР¶РёСЏ РґР»СЏ РґСѓРјРµСЂР°)");
-	SendClientMessage(playerid,COLOR_DPT,"===== РџСЂРµРґ. СЃС‚СЂР°РЅРёС†Р°: /weapons =====");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /propack (Пак оружия Профи)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /noobpack (Нубоганы)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /idkfa (Пак оружия для думера)");
+	SendClientMessage(playerid,COLOR_DPT,"===== Пред. страница: /weapons =====");
 	return true;
 }
 CMD:propack(playerid)
@@ -1142,7 +1142,7 @@ CMD:idkfa(playerid)
 }
 CMD:spawn(playerid)
 {
-	SendClientMessage(playerid,COLOR_BLUE,"Р’С‹ Р±С‹Р»Рё С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅС‹ РЅР° СЃРїР°РІРЅ.");
+	SendClientMessage(playerid,COLOR_BLUE,"Вы были телепортированы на спавн.");
 	SpawnPlayer(playerid);
 	return true;
 }
@@ -1226,72 +1226,72 @@ CMD:wsniper(playerid)
 	GivePlayerWeapon(playerid,34,100000);
 	return true;
 }
-//РЎРїР°РІРЅ РўР°С‡РµРє
+//Спавн Тачек
 CMD:cars(playerid)
 {
-	SendClientMessage(playerid,COLOR_DPT,"===== РЎС‚СЂР°РЅРёС†Р° 1/2 =====");
+	SendClientMessage(playerid,COLOR_DPT,"===== Страница 1/2 =====");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /huntley /landstalker /perrenial /rancher /rancher2 /regina /banshee /bullet /zr350 /benson /dumper ");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /romero /solair /alpha /blista /bravura /buccaneer /cadrona /cheetah /comet /turismo /windsor /dozer ");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /club /esperanto /feltzer /fortune /hermes /hustler /majestic /hotknife /infernus /supergt /mesa ");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /manana /picador /previon /stafford /stallion /tampa /virgo /hotring /hotringa /hotringb /dft30 ");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /admiral /elegant /emperor /euros /glendale /glendale2 /greenwood /boxville /boxville2 /cementtruck ");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /intruder /merit /nebula /oceanic /premier /primo /sentinel /stretch /dune /flatbed /hotdog /linerunner ");
-	SendClientMessage(playerid,COLOR_DPT,"===== РЎР»РµРґ. СЃС‚СЂР°РЅРёС†Р°: /cars2 =====");
+	SendClientMessage(playerid,COLOR_DPT,"===== След. страница: /cars2 =====");
 	return true;
 }
 CMD:cars2(playerid)
 {
-	SendClientMessage(playerid,COLOR_DPT,"===== РЎС‚СЂР°РЅРёС†Р° 2/2 =====");
+	SendClientMessage(playerid,COLOR_DPT,"===== Страница 2/2 =====");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /sunrise /tahoma /vincent /washington /willard /buffalo /clover /mrwoopee /mule /packer /roadtrain ");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /phoenix /sabre /elegy /flash /jester /stratum /sultan /uranus /tanker /tractor /yankee /topfun ");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /bobcat /burrito /forklift /moonbeam /mower /newsvan /pony /rumpo /sadler /sadler2 /tug /walton ");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /blade /broadway /remington /savanna /slamvan /tornado /voodoo /yosemite /linerunner  /combine ");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /other /bikes /public /security /aircrafts /boats /rccars ");
-	SendClientMessage(playerid,COLOR_DPT,"===== РџСЂРµРґ. СЃС‚СЂР°РЅРёС†Р°: /cars =====");
+	SendClientMessage(playerid,COLOR_DPT,"===== Пред. страница: /cars =====");
 	return true;
 }
 CMD:other(playerid)
 {
-	SendClientMessage(playerid,COLOR_DPT,"===== Р”СЂСѓРіРёРµ =====");
+	SendClientMessage(playerid,COLOR_DPT,"===== Другие =====");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /bandito /bfinjection /bloodringbanger /caddy /camper /journey /kart /monster /monstera /monsterb ");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /quad /sandking /vortex ");
 	return true;
 }
 CMD:bikes(playerid)
 {
-	SendClientMessage(playerid,COLOR_DPT,"===== РњРѕС‚РѕС†РёРєР»С‹ =====");
+	SendClientMessage(playerid,COLOR_DPT,"===== Мотоциклы =====");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /bmx /bike /mountainbike /bf400 /faggio /fcr900 /freeway /nrg500 /pcj600 /pizzaboy /sanchez /wayfarer ");
 	return true;
 }
 CMD:public(playerid)
 {
-	SendClientMessage(playerid,COLOR_DPT,"===== РџСѓР±Р»РёС‡РЅС‹Рµ =====");
+	SendClientMessage(playerid,COLOR_DPT,"===== Публичные =====");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /baggage /bus /ambulance /cabbie /coach /sweeper /taxi /towtruck /trashmaster /utilityvan ");
 	return true;
 }
 CMD:security(playerid)
 {
-	SendClientMessage(playerid,COLOR_DPT,"*===== РћС…СЂР°РЅР° =====");
+	SendClientMessage(playerid,COLOR_DPT,"*===== Охрана =====");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /barracks /enforcer /fbirancher /fbitruck /firetruck /firetrucka /hpv1000 /patriot /rhino ");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /policels /policesf /policelv /policeranger /securicar /swattank ");
 	return true;
 }
 CMD:aircrafts(playerid)
 {
-	SendClientMessage(playerid,COLOR_DPT,"*===== РђРІРёР° =====");
+	SendClientMessage(playerid,COLOR_DPT,"*===== Авиа =====");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /andromada /at400 /beagle /cargobob /cropduster /dodo /hunter /leviathon /maverick /nevada /hydra ");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /newsmaverick /policemaverick /raindance /rustler /seasparrow /shamal /skimmer /sparrow /stuntplane ");
 	return true;
 }
 CMD:boats(playerid)
 {
-	SendClientMessage(playerid,COLOR_DPT,"*===== Р›РѕРґРєРё =====");
+	SendClientMessage(playerid,COLOR_DPT,"*===== Лодки =====");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /coastguard /dingy /jetmax /launch /marquis /predator /reefer /speeder /squallo /tropic ");
 	return true;
 }
 CMD:rccars(playerid)
 {
-	SendClientMessage(playerid,COLOR_DPT,"*===== Р Р°РґРёРѕ-СѓРїСЂР°РІР»СЏРµРјС‹Рµ =====");
+	SendClientMessage(playerid,COLOR_DPT,"*===== Радио-управляемые =====");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /rcbandit /rcbaron /rccam /rcgoblin /rcgoblin2 /rctiger ");
 	return true;
 }
@@ -3265,16 +3265,16 @@ CMD:sadler2(playerid)
 	CreateVehicle(605,X,Y+5,Z,1,1,1,90000);
 	return true;
 }
-//РўСЋРЅРёРЅРіРѕРІР°РЅРЅС‹Рµ РўР°С‡РєРё
+//Тюнингованные Тачки
 CMD:tcars(playerid)
 {
-	SendClientMessage(playerid,COLOR_DPT,"===== РўСЋРЅРёРЅРіРѕРІР°РЅРЅС‹Рµ РњР°С€РёРЅС‹ =====");
-	SendClientMessage(playerid,COLOR_WHITE,"=== Р’РІРµРґРёС‚Рµ /telegy С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ Elegy!");
-	SendClientMessage(playerid,COLOR_WHITE,"=== Р’РІРµРґРёС‚Рµ /turanus С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ Uranus!");
-	SendClientMessage(playerid,COLOR_WHITE,"=== Р’РІРµРґРёС‚Рµ /tstrat С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ Stratus!");
-	SendClientMessage(playerid,COLOR_WHITE,"=== Р’РІРµРґРёС‚Рµ /tflash С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ Flash!");
-	SendClientMessage(playerid,COLOR_WHITE,"=== Р’РІРµРґРёС‚Рµ /tjester С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ Jester!");
-	SendClientMessage(playerid,COLOR_WHITE,"=== Р’РІРµРґРёС‚Рµ /tsultan С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ Sultan!");
+	SendClientMessage(playerid,COLOR_DPT,"===== Тюнингованные Машины =====");
+	SendClientMessage(playerid,COLOR_WHITE,"=== Введите /telegy чтобы получить Elegy!");
+	SendClientMessage(playerid,COLOR_WHITE,"=== Введите /turanus чтобы получить Uranus!");
+	SendClientMessage(playerid,COLOR_WHITE,"=== Введите /tstrat чтобы получить Stratus!");
+	SendClientMessage(playerid,COLOR_WHITE,"=== Введите /tflash чтобы получить Flash!");
+	SendClientMessage(playerid,COLOR_WHITE,"=== Введите /tjester чтобы получить Jester!");
+	SendClientMessage(playerid,COLOR_WHITE,"=== Введите /tsultan чтобы получить Sultan!");
 	return true;
 }
 CMD:telegy(playerid)
@@ -3379,38 +3379,38 @@ CMD:tsultan(playerid)
 	ChangeVehiclePaintjob(carid,1);
 	return true;
 }
-//РўРµР»РµРїРѕСЂС‚С‹
+//Телепорты
 CMD:teleports(playerid)
 {
-	SendClientMessage(playerid,COLOR_DPT,"===== РЎС‚СЂР°РЅРёС†Р° 1/3 =====");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /ls /sf /lv (Р“РѕСЂРѕРґР°)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /lsair /sfair /lvair /aa (РђСЌСЂРѕРїРѕСЂС‚С‹)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /lspd /sfpd /lvpd (РџРѕР»РёС†РёСЏ)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /ammuls /ammusf /ammulv (РђРјСѓРЅРёС†РёСЏ)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /arch /trans /loco (РўСЋРЅРёРЅРі)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /sdrift1 /sdrift2 /sdrift3 (Р”СЂРёС„С‚)");
-	SendClientMessage(playerid,COLOR_DPT,"===== РЎР»РµРґ. СЃС‚СЂР°РЅРёС†Р°: /teleports2 =====");
+	SendClientMessage(playerid,COLOR_DPT,"===== Страница 1/3 =====");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /ls /sf /lv (Города)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /lsair /sfair /lvair /aa (Аэропорты)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /lspd /sfpd /lvpd (Полиция)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /ammuls /ammusf /ammulv (Амуниция)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /arch /trans /loco (Тюнинг)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /sdrift1 /sdrift2 /sdrift3 (Дрифт)");
+	SendClientMessage(playerid,COLOR_DPT,"===== След. страница: /teleports2 =====");
 	return true;
 }
 CMD:teleports2(playerid)
 {
-	SendClientMessage(playerid,COLOR_DPT,"===== РЎС‚СЂР°РЅРёС†Р° 2/3 =====");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /drift[1-53] /driftcircle /driftschool /skydrift (Р”СЂРёС„С‚ 2)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /beach (РџР»СЏР¶)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /thebank (Р‘Р°РЅРє)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /area51 (Р—РѕРЅР° 69)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /4dragons (РљР°Р·РёРЅРѕ 4 Р”СЂР°РєРѕРЅР°)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /farm (Р¤РµСЂРјР°)");
-	SendClientMessage(playerid,COLOR_DPT,"===== РЎР»РµРґ. СЃС‚СЂР°РЅРёС†Р°: /teleports3 =====");
+	SendClientMessage(playerid,COLOR_DPT,"===== Страница 2/3 =====");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /drift[1-53] /driftcircle /driftschool /skydrift (Дрифт 2)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /beach (Пляж)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /thebank (Банк)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /area51 (Зона 69)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /4dragons (Казино 4 Дракона)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /farm (Ферма)");
+	SendClientMessage(playerid,COLOR_DPT,"===== След. страница: /teleports3 =====");
 	return true;
 }
 CMD:teleports3(playerid)
 {
-	SendClientMessage(playerid,COLOR_DPT,"===== РЎС‚СЂР°РЅРёС†Р° 3/3 =====");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /chilliad (Р“РѕСЂР° Р§РёР»РёР°Рґ)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /gs (Р“СЂСѓРІ РЎС‚СЂРёС‚)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /spawn (РЎРїР°РІРЅ)");
-	SendClientMessage(playerid,COLOR_DPT,"===== РџСЂРµРґ. СЃС‚СЂР°РЅРёС†Р°: /teleports2 =====");
+	SendClientMessage(playerid,COLOR_DPT,"===== Страница 3/3 =====");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /chilliad (Гора Чилиад)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /gs (Грув Стрит)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /spawn (Спавн)");
+	SendClientMessage(playerid,COLOR_DPT,"===== Пред. страница: /teleports2 =====");
 	return true;
 }
 CMD:beach(playerid)
@@ -3424,13 +3424,13 @@ CMD:beach(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),195.6263,-1943.2715,-3.9503);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -3438,9 +3438,9 @@ CMD:beach(playerid)
 		SetPlayerPos(playerid,195.6263,-1943.2715,-3.9503);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3455,13 +3455,13 @@ CMD:gs(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2512.0932617188,-1671.1571044922,13.907941818237);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -3469,9 +3469,9 @@ CMD:gs(playerid)
 		SetPlayerPos(playerid, 2512.0932617188,-1671.1571044922,13.907941818237);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3486,13 +3486,13 @@ CMD:ls(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1280.9606933594,-1338.0102539063,13.654249191284);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Los Santos (/ls)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Los Santos (/ls)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Los Santos! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Los Santos! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -3500,9 +3500,9 @@ CMD:ls(playerid)
 		SetPlayerPos(playerid, 1280.9606933594,-1338.0102539063,13.654249191284);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Los Santos (/ls)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Los Santos (/ls)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Los Santos! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Los Santos! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3517,13 +3517,13 @@ CMD:sf(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-1985.9775390625,138.49540710449,28.008354187012);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -3531,9 +3531,9 @@ CMD:sf(playerid)
 		SetPlayerPos(playerid, -1985.9775390625,138.49540710449,28.008354187012);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3548,13 +3548,13 @@ CMD:lv(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2003.9881591797,1544.4967041016,13.785161018372);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -3562,9 +3562,9 @@ CMD:lv(playerid)
 		SetPlayerPos(playerid, 2003.9881591797,1544.4967041016,13.785161018372);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3579,13 +3579,13 @@ CMD:chilliad(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-2234.4709472656,-1736.5864257813,481.37677001953);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -3593,9 +3593,9 @@ CMD:chilliad(playerid)
 		SetPlayerPos(playerid, -2234.4709472656,-1736.5864257813,481.37677001953);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3610,13 +3610,13 @@ CMD:lsair(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1962.0178222656,-2183.4311523438,13.916575431824);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -3624,9 +3624,9 @@ CMD:lsair(playerid)
 		SetPlayerPos(playerid,1962.0178222656,-2183.4311523438,13.916575431824);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3641,13 +3641,13 @@ CMD:sfair(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-1258.97265625,29.321908950806,15.348086357117);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -3655,9 +3655,9 @@ CMD:sfair(playerid)
 		SetPlayerPos(playerid,-1258.97265625,29.321908950806,15.348086357117);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3672,13 +3672,13 @@ CMD:lvair(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1318.8817138672,1252.8098144531,11.167939186096);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -3686,9 +3686,9 @@ CMD:lvair(playerid)
 		SetPlayerPos(playerid,1318.8817138672,1252.8098144531,11.167939186096);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3703,13 +3703,13 @@ CMD:lspd(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1541.4703369141,-1683.0941162109,14.26225566864);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -3717,9 +3717,9 @@ CMD:lspd(playerid)
 		SetPlayerPos(playerid,1541.4703369141,-1683.0941162109,14.26225566864);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3734,13 +3734,13 @@ CMD:sfpd(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-1616.4086914063,681.66888427734,7.465208530426);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -3748,9 +3748,9 @@ CMD:sfpd(playerid)
 		SetPlayerPos(playerid,-1616.4086914063,681.66888427734,7.465208530426);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3765,13 +3765,13 @@ CMD:lvpd(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2240.849609375,2449.4326171875,11.949013710022);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -3779,9 +3779,9 @@ CMD:lvpd(playerid)
 		SetPlayerPos(playerid,2240.849609375,2449.4326171875,11.949013710022);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3796,13 +3796,13 @@ CMD:aa(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),404.32720947266,2452.1518554688,16.990623474121);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -3810,9 +3810,9 @@ CMD:aa(playerid)
 		SetPlayerPos(playerid,404.32720947266,2452.1518554688,16.990623474121);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3827,13 +3827,13 @@ CMD:sdrift1(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-308.98721313477,1536.6369628906,75.495559692383);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -3841,9 +3841,9 @@ CMD:sdrift1(playerid)
 		SetPlayerPos(playerid,-308.98721313477,1536.6369628906,75.495559692383);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3858,13 +3858,13 @@ CMD:sdrift2(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2342.1010742188,1398.7923583984,43.355499267578);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -3872,9 +3872,9 @@ CMD:sdrift2(playerid)
 		SetPlayerPos(playerid,2342.1010742188,1398.7923583984,43.355499267578);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3890,13 +3890,13 @@ CMD:sdrift3(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2285.5529785156,1964.0476074219,31.797733306885);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -3904,9 +3904,9 @@ CMD:sdrift3(playerid)
 		SetPlayerPos(playerid,2285.5529785156,1964.0476074219,31.797733306885);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3921,13 +3921,13 @@ CMD:trans(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1041.0904541016,-1033.6147460938,32.341972351074);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -3935,9 +3935,9 @@ CMD:trans(playerid)
 		SetPlayerPos(playerid,1041.0904541016,-1033.6147460938,32.341972351074);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3952,13 +3952,13 @@ CMD:loco(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2645.1872558594,-2017.2416992188,13.325689315796);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -3966,9 +3966,9 @@ CMD:loco(playerid)
 		SetPlayerPos(playerid,2645.1872558594,-2017.2416992188,13.325689315796);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3983,13 +3983,13 @@ CMD:arch(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-2705.3400878906,217.48022460938,3.8556115627289);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -3997,9 +3997,9 @@ CMD:arch(playerid)
 		SetPlayerPos(playerid,-2705.3400878906,217.48022460938,3.8556115627289);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4014,13 +4014,13 @@ CMD:area51(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),213.86730957031,1869.2495117188,12.811868667603);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4028,9 +4028,9 @@ CMD:area51(playerid)
 		SetPlayerPos(playerid, 213.86730957031,1869.2495117188,12.811868667603);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4045,13 +4045,13 @@ CMD:farm(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-1059.3493652344,-1195.5015869141,130.05325317383);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4059,9 +4059,9 @@ CMD:farm(playerid)
 		SetPlayerPos(playerid, -1059.3493652344,-1195.5015869141,130.05325317383);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4076,13 +4076,13 @@ CMD:4dragons(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2028.6000976563,1008.0216064453,10.786623001099);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4090,9 +4090,9 @@ CMD:4dragons(playerid)
 		SetPlayerPos(playerid, 2028.6000976563,1008.0216064453,10.786623001099);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4107,13 +4107,13 @@ CMD:ammulv(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2153.634765625,942.84271240234,11.116275787354);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4121,9 +4121,9 @@ CMD:ammulv(playerid)
 		SetPlayerPos(playerid, 2153.634765625,942.84271240234,11.116275787354);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4138,13 +4138,13 @@ CMD:ammusf(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-2626.9919433594,213.13157653809,4.4227476119995);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4152,9 +4152,9 @@ CMD:ammusf(playerid)
 		SetPlayerPos(playerid, -2626.9919433594,213.13157653809,4.4227476119995);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4169,13 +4169,13 @@ CMD:ammuls(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1364.6674804688,-1280.0222167969,13.651518821716);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4183,9 +4183,9 @@ CMD:ammuls(playerid)
 		SetPlayerPos(playerid, 1364.6674804688,-1280.0222167969,13.651518821716);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4200,13 +4200,13 @@ CMD:thebank(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1460.8756103516,-1026.2967529297,23.937147140503);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4214,9 +4214,9 @@ CMD:thebank(playerid)
 		SetPlayerPos(playerid, 1460.8756103516,-1026.2967529297,23.937147140503);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4227,23 +4227,23 @@ CMD:driftcircle(playerid)
 	if(!IsPlayerInAnyVehicle(playerid))
 	{
 		GetPlayerName(playerid, pName, sizeof(pName));
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift Circle (/driftcircle)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift Circle (/driftcircle)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
 		SetPlayerPos(playerid,-2693.8916,335.3300,4.1872);
 		SetPlayerFacingAngle(playerid,88.6440);
 		SetPlayerInterior(playerid,0);
-		GameTextForPlayer(playerid, "~r~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift Circle", 5000, 5);
+		GameTextForPlayer(playerid, "~r~Добро пожаловать на Drift Circle", 5000, 5);
 	}
 	else
 	{
 		GetPlayerName(playerid, pName, sizeof(pName));
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift Circle (/driftcircle)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift Circle (/driftcircle)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
 		SetVehiclePos(GetPlayerVehicleID(playerid),-2693.8916,335.3300,4.1872);
 		SetVehicleZAngle(GetPlayerVehicleID(playerid),88.6440);
 		SetPlayerInterior(playerid,0);
 		LinkVehicleToInterior(GetPlayerVehicleID(playerid),0);
-		GameTextForPlayer(playerid, "~r~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift Circle", 5000, 5);
+		GameTextForPlayer(playerid, "~r~Добро пожаловать на Drift Circle", 5000, 5);
 	}
 	return true;
 }
@@ -4254,23 +4254,23 @@ CMD:driftschool(playerid)
 	if(!IsPlayerInAnyVehicle(playerid))
 	{
 		GetPlayerName(playerid, pName, sizeof(pName));
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift School (/driftschool)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift School (/driftschool)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
 		SetPlayerPos(playerid,1138.2185,1357.6690,10.4783);
 		SetPlayerFacingAngle(playerid,179.2724);
 		SetPlayerInterior(playerid,0);
-		GameTextForPlayer(playerid, "~r~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift School", 5000, 5);
+		GameTextForPlayer(playerid, "~r~Добро пожаловать на Drift School", 5000, 5);
 	}
 	else
 	{
 		GetPlayerName(playerid, pName, sizeof(pName));
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift School (/driftschool)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift School (/driftschool)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
 		SetVehiclePos(GetPlayerVehicleID(playerid),1138.2185,1357.6690,10.4783);
 		SetVehicleZAngle(GetPlayerVehicleID(playerid),179.2724);
 		SetPlayerInterior(playerid,0);
 		LinkVehicleToInterior(GetPlayerVehicleID(playerid),0);
-		GameTextForPlayer(playerid, "~r~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift School", 5000, 5);
+		GameTextForPlayer(playerid, "~r~Добро пожаловать на Drift School", 5000, 5);
 	}
 	return true;
 }
@@ -4281,22 +4281,22 @@ CMD:skydrift(playerid)
 	if(!IsPlayerInAnyVehicle(playerid))
 	{
 		GetPlayerName(playerid, pName, sizeof(pName));
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Sky Drift (/skydrift)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Sky Drift (/skydrift)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
 		SetPlayerPos(playerid,1114.8033,1504.1325,50.7243);
 		SetPlayerFacingAngle(playerid,2.5815);
 		SetPlayerInterior(playerid,0);
-		GameTextForPlayer(playerid, "~r~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Sky Drift", 5000, 5);
+		GameTextForPlayer(playerid, "~r~Добро пожаловать на Sky Drift", 5000, 5);
 	}
 	else
 	{
 		GetPlayerName(playerid, pName, sizeof(pName));
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Sky Drift (/skydrift)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Sky Drift (/skydrift)", pName, playerid);
 		SetVehiclePos(GetPlayerVehicleID(playerid),1114.8033,1504.1325,50.7243);
 		SetVehicleZAngle(GetPlayerVehicleID(playerid),2.5815);
 		SetPlayerInterior(playerid,0);
 		LinkVehicleToInterior(GetPlayerVehicleID(playerid),0);
-		GameTextForPlayer(playerid, "~r~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Sky Drift", 5000, 5);
+		GameTextForPlayer(playerid, "~r~Добро пожаловать на Sky Drift", 5000, 5);
 	}
 	return true;
 }
@@ -4311,20 +4311,20 @@ CMD:drift1(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid), -358.1943,1531.2909,75.1698 );
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 264.7289);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 1 (/drift1)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 1 (/drift1)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 1! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 1! ~G~", 5000, 5);
 		}
-		else SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+		else SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 	}
 	else
 	{
 		SetPlayerPos(playerid, -329.3348,1536.3771,76.6117 );
 		SetPlayerFacingAngle(playerid, 276.8851);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 1 (/drift1)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 1 (/drift1)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 1! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 1! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4339,13 +4339,13 @@ CMD:drift2(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid), 2265.3010,1399.5085,42.8203);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 269.7637);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 2 (/drift2)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 2 (/drift2)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 2! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 2! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4353,9 +4353,9 @@ CMD:drift2(playerid)
 		SetPlayerPos(playerid, 2265.3010,1399.5085,42.8203);
 		SetPlayerFacingAngle(playerid, 110.5445);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 2 (/drift2)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 2 (/drift2)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 2! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 2! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4370,13 +4370,13 @@ CMD:drift3(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid), -2489.8352,-616.3492,132.5658);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 178.7448);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 3 (/drift3)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 3 (/drift3)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 3! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 3! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4384,9 +4384,9 @@ CMD:drift3(playerid)
 		SetPlayerPos(playerid, -2489.8352,-616.3492,132.5658);
 		SetPlayerFacingAngle(playerid, 110.5445);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 3 (/drift3)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 3 (/drift3)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 3! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 3! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4401,13 +4401,13 @@ CMD:drift4(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid), 2243.2185,1963.3853,31.7797);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 178.7448);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 4 (/drift4)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 4 (/drift4)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 4! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 4! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4415,9 +4415,9 @@ CMD:drift4(playerid)
 		SetPlayerPos(playerid, 2243.2185,1963.3853,31.7797);
 		SetPlayerFacingAngle(playerid, 110.5445);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 4 (/drift4)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 4 (/drift4)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 4! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 4! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4432,13 +4432,13 @@ CMD:drift5(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid), 1146.2200,2178.7068,10.8203);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 178.7448);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 5 (/drift5)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 5 (/drift5)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 5! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 5! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4446,9 +4446,9 @@ CMD:drift5(playerid)
 		SetPlayerPos(playerid, 1146.2200,2178.7068,10.8203);
 		SetPlayerFacingAngle(playerid, 110.5445);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 5 (/drift5)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 5 (/drift5)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 5! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 5! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4463,13 +4463,13 @@ CMD:drift6(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid), 1886.9543,1813.2212,18.9339);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 178.7448);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 6 (/drift6)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 6 (/drift6)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 6! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 6! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4477,9 +4477,9 @@ CMD:drift6(playerid)
 		SetPlayerPos(playerid, 1886.9543,1813.2212,18.9339);
 		SetPlayerFacingAngle(playerid, 110.5445);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 6 (/drift6)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 6 (/drift6)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 6! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 6! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4494,13 +4494,13 @@ CMD:drift7(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid), -766.7427,-1730.1228,95.9759);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 355.3116);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 7 (/drift7)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 7 (/drift7)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 7! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 7! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4508,9 +4508,9 @@ CMD:drift7(playerid)
 		SetPlayerPos(playerid, -766.7427,-1730.1228,95.9759);
 		SetPlayerFacingAngle(playerid, 110.5445);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 7 (/drift7)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 7 (/drift7)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 7! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 7! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4525,13 +4525,13 @@ CMD:drift8(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid), 711.8475,2581.5981,25.2460);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 178.7448);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 8 (/drift8)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 8 (/drift8)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 8! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 8! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4539,9 +4539,9 @@ CMD:drift8(playerid)
 		SetPlayerPos(playerid, 711.8475,2581.5981,25.2460);
 		SetPlayerFacingAngle(playerid, 110.5445);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 8 (/drift8)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 8 (/drift8)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 8! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 8! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4556,13 +4556,13 @@ CMD:drift9(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid), -2418.8452,81.8775,34.6797);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 89.7885);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 9 (/drift9)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 9 (/drift9)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 9! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 9! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4570,9 +4570,9 @@ CMD:drift9(playerid)
 		SetPlayerPos(playerid, -2418.8452,81.8775,34.6797);
 		SetPlayerFacingAngle(playerid, 89.7885);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 9 (/drift9)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 9 (/drift9)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 9! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 9! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4587,13 +4587,13 @@ CMD:drift10(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid), 915.9879,-685.1018,116.0321);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 148.8388);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 10 (/drift10)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 10 (/drift10)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 10! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 10! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4601,9 +4601,9 @@ CMD:drift10(playerid)
 		SetPlayerPos(playerid, 915.9879,-685.1018,116.0321);
 		SetPlayerFacingAngle(playerid, 148.8388);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 10 (/drift10)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 10 (/drift10)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 10! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 10! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4618,13 +4618,13 @@ CMD:drift11(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid), -771.1682,-100.2281,64.8293);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 290.6883);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 11 (/drift11)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 11 (/drift11)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 11! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 11! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4632,9 +4632,9 @@ CMD:drift11(playerid)
 		SetPlayerPos(playerid, -771.1682,-100.2281,64.8293);
 		SetPlayerFacingAngle(playerid, 290.6883);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 11 (/drift11)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 11 (/drift11)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 11! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 11! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4649,13 +4649,13 @@ CMD:drift12(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid), 2847.8616,-758.0251,10.4511);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 357.8184);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 12 (/drift12)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 12 (/drift12)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 12! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 12! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4663,9 +4663,9 @@ CMD:drift12(playerid)
 		SetPlayerPos(playerid, 2847.8616,-758.0251,10.4511);
 		SetPlayerFacingAngle(playerid, 357.8184);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 12 (/drift12)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 12 (/drift12)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 12! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 12! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4680,13 +4680,13 @@ CMD:drift13(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid), 1246.2567,-2057.4617,59.5055);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 266.6362);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 13 (/drift13)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 13 (/drift13)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 13! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 13! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4694,9 +4694,9 @@ CMD:drift13(playerid)
 		SetPlayerPos(playerid, 1239.8492,-2037.4199,59.9314);
 		SetPlayerFacingAngle(playerid, 260.3887);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 13 (/drift13)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 13 (/drift13)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 13! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 13! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4711,13 +4711,13 @@ CMD:drift14(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid), 1636.9423,-1154.2665,23.6056);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 357.5793);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 14 (/drift14)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 14 (/drift14)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 14! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 14! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4725,9 +4725,9 @@ CMD:drift14(playerid)
 		SetPlayerPos(playerid, 1636.9423,-1154.2665,23.6056);
 		SetPlayerFacingAngle(playerid, 357.5793);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 14 (/drift14)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 14 (/drift14)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 14! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 14! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4742,13 +4742,13 @@ CMD:drift15(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1978.7637,2238.7798,26.8968);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 269.8691);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 15 (/drift15)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 15 (/drift15)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 15! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 15! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4756,9 +4756,9 @@ CMD:drift15(playerid)
 		SetPlayerPos(playerid, 1978.7637,2238.7798,26.8968);
 		SetPlayerFacingAngle(playerid,  269.8691);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 15 (/drift15)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 15 (/drift15)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 15! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 15! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4773,13 +4773,13 @@ CMD:drift16(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-116.2590,819.2222,20.0582);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 199.9199);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 16 (/drift16)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 16 (/drift16)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 16! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 16! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4787,9 +4787,9 @@ CMD:drift16(playerid)
 		SetPlayerPos(playerid, -116.2590,819.2222,20.0582);
 		SetPlayerFacingAngle(playerid,  199.9199);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 16 (/drfit16)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 16 (/drfit16)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 16! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 16! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4804,13 +4804,13 @@ CMD:drift17(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2620.0789,-2406.7498,13.1992);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 269.8561);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 17 (/drift17)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 17 (/drift17)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 17! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 17! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4818,9 +4818,9 @@ CMD:drift17(playerid)
 		SetPlayerPos(playerid, 2620.0789,-2406.7498,13.1992);
 		SetPlayerFacingAngle(playerid,  269.8561);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 17 (/drift17)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 17 (/drift17)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 18! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 18! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4835,13 +4835,13 @@ CMD:drift18(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-318.4155,2518.4719,34.4178);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 276.3857);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 18 (/drift18)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 18 (/drift18)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 18! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 18! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4849,9 +4849,9 @@ CMD:drift18(playerid)
 		SetPlayerPos(playerid, -318.4155,2518.4719,34.4178);
 		SetPlayerFacingAngle(playerid,  276.3857);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 18 (/drift18)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 18 (/drift18)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 18! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 18! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4866,13 +4866,13 @@ CMD:drift19(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-1994.6610,343.1967,34.7129);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 266.1237);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 19 (/drift19)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 19 (/drift19)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 19! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 19! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4880,9 +4880,9 @@ CMD:drift19(playerid)
 		SetPlayerPos(playerid, -1994.6610,343.1967,34.7129);
 		SetPlayerFacingAngle(playerid,  266.1237);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 19 (/drift19)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 19 (/drift19)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 19! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 19! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4897,13 +4897,13 @@ CMD:drift20(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-536.4901,1985.9124,59.8858);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 54.5365);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 20 (/drift20)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 20 (/drift20)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 20! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 20! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4911,9 +4911,9 @@ CMD:drift20(playerid)
 		SetPlayerPos(playerid, -536.4901,1985.9124,59.8858);
 		SetPlayerFacingAngle(playerid,  54.5365);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 20 (/drift20)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 20 (/drift20)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 20! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 20! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4928,13 +4928,13 @@ CMD:drift21(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2560.1799,-1054.5699,69.1088);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 174.5037);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 21 (/drift21)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 21 (/drift21)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 21! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 21! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4942,9 +4942,9 @@ CMD:drift21(playerid)
 		SetPlayerPos(playerid, 2560.1799,-1054.5699,69.1088);
 		SetPlayerFacingAngle(playerid,  174.5037);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 21 (/drift21)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 21 (/drift21)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 21! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 21! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4959,13 +4959,13 @@ CMD:drift22(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2744.8188,-1259.8951,59.2429);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 268.8653);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 22 (/drift22)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 22 (/drift22)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 22! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 22! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -4973,9 +4973,9 @@ CMD:drift22(playerid)
 		SetPlayerPos(playerid, 2744.8188,-1259.8951,59.2429);
 		SetPlayerFacingAngle(playerid,  268.8653);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 22 (/drift22)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 22 (/drift22)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 22! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 22! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4990,13 +4990,13 @@ CMD:drift23(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),664.9158,-1317.3036,13.1367);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 1.9902);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 23 (/drift23)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 23 (/drift23)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 23! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 23! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5004,9 +5004,9 @@ CMD:drift23(playerid)
 		SetPlayerPos(playerid, 664.9158,-1317.3036,13.1367);
 		SetPlayerFacingAngle(playerid,  1.9902);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 23 (/drift23)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 23 (/drift23)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 23! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 23! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5021,13 +5021,13 @@ CMD:drift24(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),293.9851,-561.8304,40.3055);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 89.1122);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 24 (/drift24)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 24 (/drift24)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 24! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 24! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5035,9 +5035,9 @@ CMD:drift24(playerid)
 		SetPlayerPos(playerid, 293.9851,-561.8304,40.3055);
 		SetPlayerFacingAngle(playerid,  89.1122);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 24 (/drift24)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 24 (/drift24)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 24! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 24! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5052,13 +5052,13 @@ CMD:drift25(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-1257.1068,-1355.8252,119.8318);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 110.5793);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 25 (/drift25)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 25 (/drift25)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 25! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 25! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5066,9 +5066,9 @@ CMD:drift25(playerid)
 		SetPlayerPos(playerid, -1257.1068,-1355.8252,119.8318);
 		SetPlayerFacingAngle(playerid,  110.5793);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 25 (/drift25)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 25 (/drift25)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 25! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 25! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5083,13 +5083,13 @@ CMD:drift26(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1277.5319,-601.2232,100.9038);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 353.0812);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 26 (/drift26)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 26 (/drift26)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 26! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 26! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5097,9 +5097,9 @@ CMD:drift26(playerid)
 		SetPlayerPos(playerid, 1277.5319,-601.2232,100.9038);
 		SetPlayerFacingAngle(playerid,  353.0812);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 26 (/drift26)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 26 (/drift26)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 26! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 26! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5114,13 +5114,13 @@ CMD:drift27(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-1810.9692,2685.8086,55.8367);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 76.9332);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 27 (/drift27)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 27 (/drift27)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 27! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 27! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5128,9 +5128,9 @@ CMD:drift27(playerid)
 		SetPlayerPos(playerid, -1810.9692,2685.8086,55.8367);
 		SetPlayerFacingAngle(playerid,  76.9332);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 27 (/drift27)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 27 (/drift27)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 27! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 27! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5145,13 +5145,13 @@ CMD:drift28(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-1822.0422,2670.2593,54.7437);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 144.0571);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 28 (/drift28)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 28 (/drift28)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 28! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 28! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5159,9 +5159,9 @@ CMD:drift28(playerid)
 		SetPlayerPos(playerid, -1822.0422,2670.2593,54.7437);
 		SetPlayerFacingAngle(playerid,  144.0571);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 28 (/drift28)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 28 (/drift28)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 28! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 28! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5176,13 +5176,13 @@ CMD:drift29(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1104.5126,815.3459,10.4263);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 305.2941);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 29 (/drift29)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 29 (/drift29)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 29! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 29! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5190,9 +5190,9 @@ CMD:drift29(playerid)
 		SetPlayerPos(playerid, 1104.5126,815.3459,10.4263);
 		SetPlayerFacingAngle(playerid,  305.2941);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 29 (/drift29)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 29 (/drift29)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 29! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 29! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5207,13 +5207,13 @@ CMD:drift30(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2509.8716,1606.4781,10.4566);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 158.8041);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 30 (/drift30)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 30 (/drift30)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 30! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 30! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5221,9 +5221,9 @@ CMD:drift30(playerid)
 		SetPlayerPos(playerid, 2509.8716,1606.4781,10.4566);
 		SetPlayerFacingAngle(playerid,  158.8041);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 30 (/drift30)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 30 (/drift30)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 30! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 30! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5238,13 +5238,13 @@ CMD:drift31(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-1421.2139,-816.0684,80.1159);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 93.0473);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 31 (/drift31)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 31 (/drift31)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 31! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 31! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5252,9 +5252,9 @@ CMD:drift31(playerid)
 		SetPlayerPos(playerid, -1421.2139,-816.0684,80.1159);
 		SetPlayerFacingAngle(playerid,  93.0473);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 31 (/drift31)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 31 (/drift31)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 31! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 31! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5269,13 +5269,13 @@ CMD:drift32(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-1697.0072,991.5380,17.2838);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 357.3751);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 32 (/drift32)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 32 (/drift32)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 32! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 32! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5283,9 +5283,9 @@ CMD:drift32(playerid)
 		SetPlayerPos(playerid, -1697.0072,991.5380,17.2838);
 		SetPlayerFacingAngle(playerid,  357.3751);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 32 (/drift32)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 32 (/drift32)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 32! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 32! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5300,13 +5300,13 @@ CMD:drift33(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-2136.3975,919.4185,79.5486);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 268.2998);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 33 (/drift33)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 33 (/drift33)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 33! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 33! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5314,9 +5314,9 @@ CMD:drift33(playerid)
 		SetPlayerPos(playerid, -2136.3975,919.4185,79.5486);
 		SetPlayerFacingAngle(playerid,  268.2998);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 33 (/drift33)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 33 (/drift33)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 33! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 33! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5331,13 +5331,13 @@ CMD:drift34(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-1400.5747,-291.2898,5.7002);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 353.6805);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 34 (/drift34)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 34 (/drift34)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 34! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 34! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5345,9 +5345,9 @@ CMD:drift34(playerid)
 		SetPlayerPos(playerid, -1400.5747,-291.2898,5.7002);
 		SetPlayerFacingAngle(playerid,  353.6805);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 34 (/drift34)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 34 (/drift34)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 34! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 34! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5362,13 +5362,13 @@ CMD:drift35(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1615.3378,-1659.0410,13.2405);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 184.4336);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 35 (/drift35)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 35 (/drift35)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 35! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 35! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5376,9 +5376,9 @@ CMD:drift35(playerid)
 		SetPlayerPos(playerid, 1615.3378,-1659.0410,13.2405);
 		SetPlayerFacingAngle(playerid,  184.4336);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 35 (/drift35)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 35 (/drift35)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 35! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 35! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5393,13 +5393,13 @@ CMD:drift36(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1651.2620,-2599.9829,13.2465);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 269.8469);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 36 (/drift36)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 36 (/drift36)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 36! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 36! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5407,9 +5407,9 @@ CMD:drift36(playerid)
 		SetPlayerPos(playerid, 1651.2620,-2599.9829,13.2465);
 		SetPlayerFacingAngle(playerid,  269.8469);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 36 (/drift36)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 36 (/drift36)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 36! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 36! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5424,13 +5424,13 @@ CMD:drift37(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),291.6453,-1489.1570,32.3365);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 50.8979);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 37 (/drift37)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 37 (/drift37)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 37! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 37! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5438,9 +5438,9 @@ CMD:drift37(playerid)
 		SetPlayerPos(playerid, 291.6453,-1489.1570,32.3365);
 		SetPlayerFacingAngle(playerid,  50.8979);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 37 (/drift37)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 37 (/drift37)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 37! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 37! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5455,13 +5455,13 @@ CMD:drift38(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1591.4022,-2192.9214,13.0724);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 88.7810);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 38 (/drift38)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 38 (/drift38)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 38! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 38! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5469,9 +5469,9 @@ CMD:drift38(playerid)
 		SetPlayerPos(playerid, 1591.4022,-2192.9214,13.0724);
 		SetPlayerFacingAngle(playerid,  88.7810);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 38 (/drift38)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 38 (/drift38)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 38! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 38! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5486,13 +5486,13 @@ CMD:drift39(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1360.9453,-2465.1997,7.3572);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 269.3084);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 39 (/drift39)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 39 (/drift39)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 39! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 39! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5500,9 +5500,9 @@ CMD:drift39(playerid)
 		SetPlayerPos(playerid, 1360.9453,-2465.1997,7.3572);
 		SetPlayerFacingAngle(playerid,  269.3084);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 39 (/drift39)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 39 (/drift39)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 39! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 39! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5517,13 +5517,13 @@ CMD:drift40(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-2265.7798,1158.4409,57.0986);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.1581);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 40 (/drift40)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 40 (/drift40)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 40! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 40! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5531,9 +5531,9 @@ CMD:drift40(playerid)
 		SetPlayerPos(playerid, -2265.7798,1158.4409,57.0986);
 		SetPlayerFacingAngle(playerid,  0.1581);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 40 (/drift40)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 40 (/drift40)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 40! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 40! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5548,13 +5548,13 @@ CMD:drift41(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-2119.4114,-349.4402,34.8226);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 270.5172);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 41 (/drift41)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 41 (/drift41)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 41! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 41! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5562,9 +5562,9 @@ CMD:drift41(playerid)
 		SetPlayerPos(playerid, -2119.4114,-349.4402,34.8226);
 		SetPlayerFacingAngle(playerid,  270.5172);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 41 (/drift41)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 41 (/drift41)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 41! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 41! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5579,13 +5579,13 @@ CMD:drift42(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1476.5244,1758.5297,10.5100);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 181.3618);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 42 (/drift42)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 42 (/drift42)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 42! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 42! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5593,9 +5593,9 @@ CMD:drift42(playerid)
 		SetPlayerPos(playerid, 1476.5244,1758.5297,10.5100);
 		SetPlayerFacingAngle(playerid,  181.3618);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 42 (/drift42)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 42 (/drift42)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 42! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 42! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5610,13 +5610,13 @@ CMD:drift43(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),137.5619,1946.4087,19.0599);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 181.3618);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 43 (/drift43)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 43 (/drift43)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 43! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 43! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5624,9 +5624,9 @@ CMD:drift43(playerid)
 		SetPlayerPos(playerid, 137.5619,1946.4087,19.0599);
 		SetPlayerFacingAngle(playerid,  181.3618);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 43 (/drift43)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 43 (/drift43)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 43! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 43! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5641,13 +5641,13 @@ CMD:drift44(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2589.9761,2800.7749,10.3423);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 90.1578);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 44 (/drift44)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 44 (/drift44)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 44! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 44! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5655,9 +5655,9 @@ CMD:drift44(playerid)
 		SetPlayerPos(playerid, 2589.9761,2800.7749,10.3423);
 		SetPlayerFacingAngle(playerid,  90.1578);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 44 (/drift44)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 44 (/drift44)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 44! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 44! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5672,13 +5672,13 @@ CMD:drift45(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1000.0231,2545.3728,10.3403);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 235.6451);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 45 (/drift45)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 45 (/drift45)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 45! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 45! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5686,9 +5686,9 @@ CMD:drift45(playerid)
 		SetPlayerPos(playerid, 1000.0231,2545.3728,10.3403);
 		SetPlayerFacingAngle(playerid,  235.6451);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 45 (/drift45)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 45 (/drift45)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 45! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 45! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5703,13 +5703,13 @@ CMD:drift46(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1322.6106,2236.8350,10.4909);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 2.3974);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 46 (/drift46)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 46 (/drift46)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 46! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 46! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5717,9 +5717,9 @@ CMD:drift46(playerid)
 		SetPlayerPos(playerid, 1322.6106,2236.8350,10.4909);
 		SetPlayerFacingAngle(playerid,  2.3974);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 46 (/drift46)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 46 (/drift46)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 46! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 46! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5734,13 +5734,13 @@ CMD:drift47(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1500.5153,994.9993,10.4639);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 90.1991);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 47 (/drift47)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 47 (/drift47)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 47! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 47! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5748,9 +5748,9 @@ CMD:drift47(playerid)
 		SetPlayerPos(playerid, 1500.5153,994.9993,10.4639);
 		SetPlayerFacingAngle(playerid,  90.1991);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 47 (/drift47)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 47 (/drift47)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 47! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 47! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5765,13 +5765,13 @@ CMD:drift48(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2050.2854,864.9113,6.4736);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 182.3646);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 48 (/drift48)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 48 (/drift48)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 48! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 48! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5779,9 +5779,9 @@ CMD:drift48(playerid)
 		SetPlayerPos(playerid, 2050.2854,864.9113,6.4736);
 		SetPlayerFacingAngle(playerid,  182.3646);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 48 (/drift48)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 48 (/drift48)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 48! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 48! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5796,13 +5796,13 @@ CMD:drift49(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2634.6064,1312.7318,10.4710);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 270.8752);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 49 (/drift49)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 49 (/drift49)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 49! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 49! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5810,9 +5810,9 @@ CMD:drift49(playerid)
 		SetPlayerPos(playerid, 2634.6064,1312.7318,10.4710);
 		SetPlayerFacingAngle(playerid,  270.8752);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 49 (/drift49)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 49 (/drift49)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 49! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 49! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5827,13 +5827,13 @@ CMD:drift50(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1605.4539,2279.6563,10.4743);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 1.3359);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 50 (/drift50)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 50 (/drift50)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 50! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 50! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5841,9 +5841,9 @@ CMD:drift50(playerid)
 		SetPlayerPos(playerid, 1605.4539,2279.6563,10.4743);
 		SetPlayerFacingAngle(playerid,  1.3359);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 50 (/drift50)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 50 (/drift50)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 50! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 50! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5858,13 +5858,13 @@ CMD:drift51(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2080.7761,-1865.9845,13.0337);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 179.1301);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 51 (/drift51)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 51 (/drift51)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 51! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 51! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5872,9 +5872,9 @@ CMD:drift51(playerid)
 		SetPlayerPos(playerid, 2080.7761,-1865.9845,13.0337);
 		SetPlayerFacingAngle(playerid,  179.1301);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 51 (/drift51)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 51 (/drift51)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 51! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 51! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5889,13 +5889,13 @@ CMD:drift52(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1342.4817,-1576.3361,13.0962);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 179.1301);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 52 (/drift52)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 52 (/drift52)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 52! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 52! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5903,9 +5903,9 @@ CMD:drift52(playerid)
 		SetPlayerPos(playerid, 1342.4817,-1576.3361,13.0962);
 		SetPlayerFacingAngle(playerid,  179.1301);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 52 (/drift52)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 52 (/drift52)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 52! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 52! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -5920,13 +5920,13 @@ CMD:drift53(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),835.6555,-878.2632,68.0216);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 238.8432);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 53 (/drift53)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 53 (/drift53)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 53! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 53! ~G~", 5000, 5);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
 		}
 	}
 	else
@@ -5934,14 +5934,33 @@ CMD:drift53(playerid)
 		SetPlayerPos(playerid, 835.6555,-878.2632,68.0216);
 		SetPlayerFacingAngle(playerid,  238.8432);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] С‚РµР»РµРїРѕСЂС‚РёСЂРѕРІР°РЅ РЅР° Drift 53 (/drift53)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Drift 53 (/drift53)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Drift 53! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Drift 53! ~G~", 5000, 5);
 	}
 	return true;
 }
 //TODO:
-//return SendClientMessage(playerid,COLOR_RED,"GameMode.Error: РќРµРёР·РІРµСЃС‚РЅР°СЏ РєРѕРјР°РЅРґР°, РґРѕСЃС‚СѓРїРЅС‹Рµ РєРѕРјР°РЅРґС‹ РёС‰РёС‚Рµ РІ /help");
+//return SendClientMessage(playerid,COLOR_RED,"GameMode.Error: Неизвестная команда, доступные команды ищите в /help");
+
+public OnRconLoginAttempt(ip[], password[], success)
+{
+    if(!success) //Если пароль введёный игроком был неправильный.
+    {
+        printf("RCON Login: Неудачная попытка входа %s использованный пароль %s",ip, password);
+        new pip[16];
+        for(new i=0; i<MAX_PLAYERS; i++) //Цикл, для поиска игрока, который ввёл неверные данные.
+        {
+            GetPlayerIp(i, pip, sizeof(pip));
+            if(!strcmp(ip, pip, true)) //Если, IP игрока, который ввёл неверный пароль нашёлся.
+            {
+                SendClientMessage(i, 0xFFFFFFFF, "Неверный пароль. Удачи"); //Отправить сообщение
+                Ban(i); //Теперь ещё ему бан.
+            }
+        }
+    }
+    return 1;
+}
 
 public SendPlayerFormattedText(playerid, const str[], define)
 {
