@@ -4,7 +4,7 @@ OpenGM
 ## Free and Open-Source of the SA:MP gamemode
 
 ### Current Working on:
- * Weapon Giving
+ * Changing teleport names
  * Animations Playing
  
 ### Plans on Future:
