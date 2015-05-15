@@ -883,12 +883,11 @@ public OnPlayerRequestClass(playerid, classid)
 
 public OnPlayerText(playerid, text[])
 {
-	new PlayerName[MAX_PLAYER_NAME];
+    new pText[144];
+    format(pText, sizeof (pText), "(%d) %s", playerid, text);
+    SendPlayerMessageToAll(playerid, pText);
 	SetPlayerChatBubble(playerid, text, 0xAA3333AA, 80.0, 10000);
-	GetPlayerName(playerid, PlayerName, sizeof(PlayerName));
-	format(text, 1024, "%s(%d): %s", PlayerName, playerid, text);
-	SendClientMessageToAll(COLOR_WHITE, text); //TODO: GetPlayerColor(playerid)
-	return true;
+    return 0; // ignore the default text and send the custom one
 }
 
 public OnPlayerCommandText(playerid, cmdtext[])
@@ -3416,7 +3415,38 @@ CMD:teleports3(playerid)
 	SendClientMessage(playerid,COLOR_DPT,"===== Пред. страница: /teleports2 =====");
 	return true;
 }
-CMD:beach(playerid)
+CMD:beach1(playerid)
+{
+	new string[256];
+	new pName[24];
+	if(IsPlayerInAnyVehicle(playerid))
+	{
+		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
+		{
+			SetVehiclePos(GetPlayerVehicleID(playerid),183.5687,-1940.4738,-4.3239);
+			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
+			SetCameraBehindPlayer(playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Beach 1 (/beach1)", pName, playerid);
+			SendClientMessageToAll(COLOR_YELLOW, string);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Beach 1! ~G~", 5000, 5);
+		}
+		else
+		{
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
+		}
+	}
+	else
+	{
+		SetPlayerPos(playerid,183.5687,-1940.4738,-4.3239);
+		SetPlayerFacingAngle(playerid, 0.0);
+		SetCameraBehindPlayer(playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Beach 1 (/beach1)", pName, playerid);
+		SendClientMessageToAll(COLOR_YELLOW, string);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Beach 1! ~G~", 5000, 5);
+	}
+	return true;
+}
+CMD:beach2(playerid)
 {
 	new string[256];
 	new pName[24];
@@ -3427,9 +3457,9 @@ CMD:beach(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),195.6263,-1943.2715,-3.9503);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Beach 2 (/beach2)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Beach 2! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -3441,9 +3471,40 @@ CMD:beach(playerid)
 		SetPlayerPos(playerid,195.6263,-1943.2715,-3.9503);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Beach 2 (/beach2)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Beach 2! ~G~", 5000, 5);
+	}
+	return true;
+}
+CMD:beach3(playerid)
+{
+	new string[256];
+	new pName[24];
+	if(IsPlayerInAnyVehicle(playerid))
+	{
+		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
+		{
+			SetVehiclePos(GetPlayerVehicleID(playerid),205.5823,-1943.0797,-4.0632);
+			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
+			SetCameraBehindPlayer(playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Beach 3 (/beach3)", pName, playerid);
+			SendClientMessageToAll(COLOR_YELLOW, string);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Beach 3! ~G~", 5000, 5);
+		}
+		else
+		{
+			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
+		}
+	}
+	else
+	{
+		SetPlayerPos(playerid,205.5823,-1943.0797,-4.0632);
+		SetPlayerFacingAngle(playerid, 0.0);
+		SetCameraBehindPlayer(playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Beach 3 (/beach3)", pName, playerid);
+		SendClientMessageToAll(COLOR_YELLOW, string);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Beach 3! ~G~", 5000, 5);
 	}
 	return true;
 }
