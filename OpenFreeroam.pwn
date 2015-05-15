@@ -1,3 +1,6 @@
+// OpenGM - Freeroam
+// v: 16.05.2015, 00:30
+
 #include <a_samp>
 #include "../include/gl_common.inc"
 #include "../include/gl_spawns.inc"
