@@ -3398,7 +3398,7 @@ CMD:teleports2(playerid)
 {
 	SendClientMessage(playerid,COLOR_DPT,"===== Страница 2/3 =====");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /drift[1-53] /driftcircle /driftschool /skydrift (Дрифт 2)");
-	SendClientMessage(playerid,COLOR_WHITE,"=== /beach (Пляж)");
+	SendClientMessage(playerid,COLOR_WHITE,"=== /beach[1-3] (Пляж)");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /thebank (Банк)");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /area51 (Зона 69)");
 	SendClientMessage(playerid,COLOR_WHITE,"=== /4dragons (Казино 4 Дракона)");
