@@ -105,7 +105,7 @@ new Text: Textdraw0;
 main()
 {
 	print("GameMode.Info > Open-Source gamemode <github.com/dpteam/OpenGM>");
-	print("GameMode.Info > dode is maintained at LFI [License Free Information] license");
+	print("GameMode.Info > code is maintained at LFI [License Free Information] license");
 	print("GameMode.Info > Scripted by DartPower");
 	print("GameMode.Info > Function ideas by NickBock, DartPower ");
 	print("GameMode.Info > Bug fixing by SerejaN");
@@ -3581,9 +3581,9 @@ CMD:sf(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-1985.9775390625,138.49540710449,28.008354187012);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на San Fierro (/sf)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на San Fierro! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -3595,9 +3595,9 @@ CMD:sf(playerid)
 		SetPlayerPos(playerid, -1985.9775390625,138.49540710449,28.008354187012);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на San Fierro (/sf)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на San Fierro! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3612,9 +3612,9 @@ CMD:lv(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2003.9881591797,1544.4967041016,13.785161018372);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Las Venturas (/lv)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Las Venturas! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -3626,9 +3626,9 @@ CMD:lv(playerid)
 		SetPlayerPos(playerid, 2003.9881591797,1544.4967041016,13.785161018372);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Las Venturas (/lv)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Las Venturas! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3643,9 +3643,9 @@ CMD:chilliad(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-2234.4709472656,-1736.5864257813,481.37677001953);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Chilliad (/chilliad)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Chilliad! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -3657,9 +3657,9 @@ CMD:chilliad(playerid)
 		SetPlayerPos(playerid, -2234.4709472656,-1736.5864257813,481.37677001953);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Chilliad (/chilliad)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Chilliad! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3674,9 +3674,9 @@ CMD:lsair(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1962.0178222656,-2183.4311523438,13.916575431824);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Los Santos Airport (/lsair)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Los Santos Airport! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -3688,9 +3688,9 @@ CMD:lsair(playerid)
 		SetPlayerPos(playerid,1962.0178222656,-2183.4311523438,13.916575431824);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Los Santos Airport (/lsair)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Los Santos Airport! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3705,9 +3705,9 @@ CMD:sfair(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-1258.97265625,29.321908950806,15.348086357117);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на San Fierro Airport (/sfair)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на San Fierro Airport! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -3719,9 +3719,9 @@ CMD:sfair(playerid)
 		SetPlayerPos(playerid,-1258.97265625,29.321908950806,15.348086357117);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на San Fierro Airport (/sfair)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на San Fierro Airport! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3736,9 +3736,9 @@ CMD:lvair(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1318.8817138672,1252.8098144531,11.167939186096);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Las Venturas Airport (/lvair)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Las Venturas Airport! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -3750,9 +3750,9 @@ CMD:lvair(playerid)
 		SetPlayerPos(playerid,1318.8817138672,1252.8098144531,11.167939186096);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Las Venturas Airport (/lvair)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Las Venturas Airport! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3767,9 +3767,9 @@ CMD:lspd(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1541.4703369141,-1683.0941162109,14.26225566864);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Los Santos Police Department (/lspd)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Los Santos Police Department! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -3781,9 +3781,9 @@ CMD:lspd(playerid)
 		SetPlayerPos(playerid,1541.4703369141,-1683.0941162109,14.26225566864);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Los Santos Police Department (/lspd)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Los Santos Police Department! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3798,9 +3798,9 @@ CMD:sfpd(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-1616.4086914063,681.66888427734,7.465208530426);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на San Fierro Police Department (/sfpd)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на San Fierro Police Department! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -3812,9 +3812,9 @@ CMD:sfpd(playerid)
 		SetPlayerPos(playerid,-1616.4086914063,681.66888427734,7.465208530426);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на San Fierro Police Department (/sfpd)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на San Fierro Police Department! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3829,9 +3829,9 @@ CMD:lvpd(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2240.849609375,2449.4326171875,11.949013710022);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Las Venturas Police Department (/lvpd)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Las Venturas Police Department! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -3843,9 +3843,9 @@ CMD:lvpd(playerid)
 		SetPlayerPos(playerid,2240.849609375,2449.4326171875,11.949013710022);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Las Venturas Police Department (/lvpd)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Las Venturas Police Department! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3860,9 +3860,9 @@ CMD:aa(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),404.32720947266,2452.1518554688,16.990623474121);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Abandoned Airport (/aa)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Abandoned Airport! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -3874,9 +3874,9 @@ CMD:aa(playerid)
 		SetPlayerPos(playerid,404.32720947266,2452.1518554688,16.990623474121);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Abandoned Airport (/aa)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Abandoned Airport! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3891,9 +3891,9 @@ CMD:sdrift1(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-308.98721313477,1536.6369628906,75.495559692383);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на SDrift 1 (/sdrift1)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на SDrift 1! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -3905,9 +3905,9 @@ CMD:sdrift1(playerid)
 		SetPlayerPos(playerid,-308.98721313477,1536.6369628906,75.495559692383);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на SDrift 1 (/sdrift1)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на SDrift 1! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3922,9 +3922,9 @@ CMD:sdrift2(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2342.1010742188,1398.7923583984,43.355499267578);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на SDrift 2 (/sdrift2)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на SDrift 2! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -3936,9 +3936,9 @@ CMD:sdrift2(playerid)
 		SetPlayerPos(playerid,2342.1010742188,1398.7923583984,43.355499267578);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на SDrift 2 (/sdrift2)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на SDrift 2! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3954,9 +3954,9 @@ CMD:sdrift3(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2285.5529785156,1964.0476074219,31.797733306885);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на SDrift 3 (/sdrift3)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на SDrift 3! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -3968,9 +3968,9 @@ CMD:sdrift3(playerid)
 		SetPlayerPos(playerid,2285.5529785156,1964.0476074219,31.797733306885);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на SDrift 3 (/sdrift3)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на SDrift 3! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -3985,9 +3985,9 @@ CMD:trans(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1041.0904541016,-1033.6147460938,32.341972351074);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Transport (/trans)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Transport! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -3999,9 +3999,9 @@ CMD:trans(playerid)
 		SetPlayerPos(playerid,1041.0904541016,-1033.6147460938,32.341972351074);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Transport (/trans)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Transport! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4016,9 +4016,9 @@ CMD:loco(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2645.1872558594,-2017.2416992188,13.325689315796);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Loco Low Co. (/loco)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Loco Low Co.! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -4030,9 +4030,9 @@ CMD:loco(playerid)
 		SetPlayerPos(playerid,2645.1872558594,-2017.2416992188,13.325689315796);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Loco Low Co. (/loco)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Loco Low Co.! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4047,9 +4047,9 @@ CMD:arch(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-2705.3400878906,217.48022460938,3.8556115627289);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Architectural Espionage (/arch)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Architectural Espionage! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -4061,9 +4061,9 @@ CMD:arch(playerid)
 		SetPlayerPos(playerid,-2705.3400878906,217.48022460938,3.8556115627289);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Architectural Espionage (/arch)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Architectural Espionage! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4078,9 +4078,9 @@ CMD:area51(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),213.86730957031,1869.2495117188,12.811868667603);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Area 51 (/area51)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Area 51! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -4092,9 +4092,9 @@ CMD:area51(playerid)
 		SetPlayerPos(playerid, 213.86730957031,1869.2495117188,12.811868667603);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Area 51 (/area51)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Area 51! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4109,9 +4109,9 @@ CMD:farm(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-1059.3493652344,-1195.5015869141,130.05325317383);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Farm (/farm)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Farm! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -4123,9 +4123,9 @@ CMD:farm(playerid)
 		SetPlayerPos(playerid, -1059.3493652344,-1195.5015869141,130.05325317383);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Farm (/farm)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Farm! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4140,9 +4140,9 @@ CMD:4dragons(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2028.6000976563,1008.0216064453,10.786623001099);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на The Four Dragons Casino (/4dragons)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на The Four Dragons Casino! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -4154,9 +4154,9 @@ CMD:4dragons(playerid)
 		SetPlayerPos(playerid, 2028.6000976563,1008.0216064453,10.786623001099);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на The Four Dragons Casino (/4dragons)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на The Four Dragons Casino! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4171,9 +4171,9 @@ CMD:ammulv(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),2153.634765625,942.84271240234,11.116275787354);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Ammu-Nation Las Venturas (/ammulv)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Ammu-Nation Las Venturas! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -4185,9 +4185,9 @@ CMD:ammulv(playerid)
 		SetPlayerPos(playerid, 2153.634765625,942.84271240234,11.116275787354);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Ammu-Nation Las Venturas (/ammulv)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Ammu-Nation Las Venturas! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4202,9 +4202,9 @@ CMD:ammusf(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),-2626.9919433594,213.13157653809,4.4227476119995);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Ammu-Nation San Fierro (/ammusf)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Ammu-Nation San Fierro! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -4216,9 +4216,9 @@ CMD:ammusf(playerid)
 		SetPlayerPos(playerid, -2626.9919433594,213.13157653809,4.4227476119995);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Ammu-Nation San Fierro (/ammusf)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Ammu-Nation San Fierro! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4233,9 +4233,9 @@ CMD:ammuls(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1364.6674804688,-1280.0222167969,13.651518821716);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на Ammu-Nation Los Santos (/ammuls)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на Ammu-Nation Los Santos! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -4247,9 +4247,9 @@ CMD:ammuls(playerid)
 		SetPlayerPos(playerid, 1364.6674804688,-1280.0222167969,13.651518821716);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на Ammu-Nation Los Santos (/ammuls)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на Ammu-Nation Los Santos! ~G~", 5000, 5);
 	}
 	return true;
 }
@@ -4264,9 +4264,9 @@ CMD:thebank(playerid)
 			SetVehiclePos(GetPlayerVehicleID(playerid),1460.8756103516,-1026.2967529297,23.937147140503);
 			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
 			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+			format(string, sizeof(string), "%s [ID:%d] телепортирован на The Bank (/thebank)", pName, playerid);
 			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+			GameTextForPlayer(playerid, "~w~Добро пожаловать на The Bank! ~G~", 5000, 5);
 		}
 		else
 		{
@@ -4278,9 +4278,9 @@ CMD:thebank(playerid)
 		SetPlayerPos(playerid, 1460.8756103516,-1026.2967529297,23.937147140503);
 		SetPlayerFacingAngle(playerid, 0.0);
 		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Groove Street (/gs)", pName, playerid);
+		format(string, sizeof(string), "%s [ID:%d] телепортирован на The Bank (/thebank)", pName, playerid);
 		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Groove Street! ~G~", 5000, 5);
+		GameTextForPlayer(playerid, "~w~Добро пожаловать на The Bank! ~G~", 5000, 5);
 	}
 	return true;
 }
