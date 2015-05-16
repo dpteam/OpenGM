@@ -923,6 +923,7 @@ CMD:commands2(playerid)
 	SendClientMessage(playerid,COLOR_WHITE,"Введите /tcars чтобы получить тюнингованные машины");
 	SendClientMessage(playerid,COLOR_WHITE,"Введите /fstyle чтобы изменить стиль боя");
 	SendClientMessage(playerid,COLOR_WHITE,"Введите /colors чтобы сменить цвет ника");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /killall чтобы убить всех (Только для Администраторов)");
 	SendClientMessage(playerid,COLOR_DPT,"===== След. страница: /commands3 =====");
 	return true;
 }
@@ -932,8 +933,8 @@ CMD:commands3(playerid)
 	SendClientMessage(playerid,COLOR_WHITE,"Введите /soulsphere чтобы получить 200% здоровья");
 	SendClientMessage(playerid,COLOR_WHITE,"Введите /megasphere чтобы получить 200% здоровья и 200% брони");
 	SendClientMessage(playerid,COLOR_WHITE,"Введите /heal чтобы вылечится");
-	SendClientMessage(playerid,COLOR_WHITE,"Введите /killall чтобы убить всех (Только для Администраторов)");
 	SendClientMessage(playerid,COLOR_WHITE,"Введите /iddqd чтобы включить/выключить неуязвимость");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /vehplate чтобы сменить номер на машине");
 	SendClientMessage(playerid,COLOR_DPT,"===== Пред. страница: /commands2 =====");
 	return true;
 }
@@ -964,6 +965,15 @@ CMD:iddqd(playerid)
 			return true;
 		}
 	}
+	return true;
+}
+CMD:vehplate(playerid)
+{
+	new Float:x,Float:y,Float:z,Float:ang;
+	GetVehiclePos(GetPlayerVehicleID(playerid),x,y,z);
+	GetVehicleZAngle(GetPlayerVehicleID(playerid),ang);
+	if(!IsPlayerInAnyVehicle(playerid)) return SendClientMessage(playerid,0xFFFFFFFF,"Вы должны быть в машине!");
+	ShowPlayerDialog(playerid,0,DIALOG_STYLE_INPUT,"{EE7777}Vehicle Numberplate","{00CC66}Введи новый номер ниже.","ОК","Отменить");
 	return true;
 }
 //Возможности
@@ -6054,7 +6064,7 @@ public OnRconLoginAttempt(ip[], password[], success)
 			}
 		}
 	}
-	return 1;
+	return true;
 }
 
 public SendPlayerFormattedText(playerid, const str[], define)
@@ -6096,6 +6106,29 @@ public OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ)
 {
 	SetPlayerPosFindZ(playerid, fX, fY, fZ);
 	return true;
+}
+
+public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
+{
+	if(dialogid == 0)
+	{
+		if(response)
+		{
+			new Float:x,Float:y,Float:z,Float:ang;
+			SetVehicleNumberPlate(GetPlayerVehicleID(playerid), inputtext);
+			GetVehiclePos(GetPlayerVehicleID(playerid),x,y,z);
+			GetVehicleZAngle(GetPlayerVehicleID(playerid),ang);
+			SetVehicleToRespawn(GetPlayerVehicleID(playerid));
+			SetVehiclePos(GetPlayerVehicleID(playerid),x,y,z);
+			PutPlayerInVehicle(playerid,GetPlayerVehicleID(playerid),0);
+			SetVehicleZAngle(GetPlayerVehicleID(playerid),ang);
+		}
+		else
+		{
+			SendClientMessage(playerid,0xFFFFFFFF,"Вы отменили действие!");
+		}
+	}
+	return true;	
 }
 
 stock IsInvalidSkin(skinid)
