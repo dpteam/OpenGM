@@ -3425,37 +3425,6 @@ CMD:teleports3(playerid)
 	SendClientMessage(playerid,COLOR_DPT,"===== Пред. страница: /teleports2 =====");
 	return true;
 }
-CMD:racetrack(playerid)
-{
-	new string[256];
-	new pName[24];
-	if(IsPlayerInAnyVehicle(playerid))
-	{
-		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
-		{
-			SetVehiclePos(GetPlayerVehicleID(playerid),-521.0,-3643.0,7.0);
-			SetVehicleZAngle(GetPlayerVehicleID(playerid), 0.0);
-			SetCameraBehindPlayer(playerid);
-			format(string, sizeof(string), "%s [ID:%d] телепортирован на Race Track (/racetrack)", pName, playerid);
-			SendClientMessageToAll(COLOR_YELLOW, string);
-			GameTextForPlayer(playerid, "~w~Добро пожаловать на Race Track! ~G~", 5000, 5);
-		}
-		else
-		{
-			SendClientMessage(playerid, COLOR_RED, "GameMode.Error: Вы должны быть в машине!");
-		}
-	}
-	else
-	{
-		SetPlayerPos(playerid,-521.0,-3643.0,7.0);
-		SetPlayerFacingAngle(playerid, 0.0);
-		SetCameraBehindPlayer(playerid);
-		format(string, sizeof(string), "%s [ID:%d] телепортирован на Race Track (/racetrack)", pName, playerid);
-		SendClientMessageToAll(COLOR_YELLOW, string);
-		GameTextForPlayer(playerid, "~w~Добро пожаловать на Race Track! ~G~", 5000, 5);
-	}
-	return true;
-}
 CMD:beach1(playerid)
 {
 	new string[256];
