@@ -84,6 +84,7 @@ new Text:txtLasVenturas;
 new gActivePlayers[MAX_PLAYERS];
 new gLastGaveCash[MAX_PLAYERS];
 new God[MAX_PLAYERS] = 0;
+new EnableBoast[MAX_PLAYERS];
 
 //Tune Cars
 new Flash1;
@@ -278,6 +279,7 @@ public OnPlayerDisconnect(playerid, reason)
 
 public OnPlayerSpawn(playerid)
 {
+	EnableBoast[playerid] = 0;
 	if(IsPlayerNPC(playerid)) return true;
 	new randSpawn = 0;
 	SetPlayerInterior(playerid,0);
@@ -309,7 +311,7 @@ public OnPlayerSpawn(playerid)
 	}
 	SetPlayerInterior(playerid,0);
 	TogglePlayerClock(playerid,1);
-	/* 	SetPlayerSkillLevel(playerid,WEAPONSKILL_PISTOL,200);
+	SetPlayerSkillLevel(playerid,WEAPONSKILL_PISTOL,200);
 	SetPlayerSkillLevel(playerid,WEAPONSKILL_PISTOL_SILENCED,200);
 	SetPlayerSkillLevel(playerid,WEAPONSKILL_DESERT_EAGLE,200);
 	SetPlayerSkillLevel(playerid,WEAPONSKILL_SHOTGUN,200);
@@ -319,7 +321,7 @@ public OnPlayerSpawn(playerid)
 	SetPlayerSkillLevel(playerid,WEAPONSKILL_MP5,200);
 	SetPlayerSkillLevel(playerid,WEAPONSKILL_AK47,200);
 	SetPlayerSkillLevel(playerid,WEAPONSKILL_M4,200);
-	SetPlayerSkillLevel(playerid,WEAPONSKILL_SNIPERRIFLE,200); */
+	SetPlayerSkillLevel(playerid,WEAPONSKILL_SNIPERRIFLE,200);
 	TextDrawShowForPlayer(playerid,txtTimeDisp);
 	gettime(hour, minute);
 	return true;
@@ -899,8 +901,8 @@ CMD:help(playerid)
 {
 	SendClientMessage(playerid,COLOR_DPT,"===== Помощь =====");
 	SendClientMessage(playerid,COLOR_WHITE,"Введите /commands чтобы посмотреть список комманд");
-	//SendClientMessage(playerid,COLOR_WHITE,"Введите /rules чтобы прочитать правила сервера");
-	//SendClientMessage(playerid,COLOR_WHITE,"Введите /credits чтобы прочитать про авторов");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /rules чтобы прочитать правила сервера");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /credits чтобы прочитать про авторов");
 	return true;
 }
 CMD:commands(playerid)
@@ -935,6 +937,7 @@ CMD:commands3(playerid)
 	SendClientMessage(playerid,COLOR_WHITE,"Введите /heal чтобы вылечится");
 	SendClientMessage(playerid,COLOR_WHITE,"Введите /iddqd чтобы включить/выключить неуязвимость");
 	SendClientMessage(playerid,COLOR_WHITE,"Введите /vehplate чтобы сменить номер на машине");
+	SendClientMessage(playerid,COLOR_WHITE,"Введите /boost чтобы включить ускорение на машине");
 	SendClientMessage(playerid,COLOR_DPT,"===== Пред. страница: /commands2 =====");
 	return true;
 }
@@ -977,6 +980,21 @@ CMD:vehplate(playerid)
 	return true;
 }
 //Возможности
+CMD:boost(playerid)
+{
+	if(EnableBoast[playerid])
+	{
+		EnableBoast[playerid] = 0; //will enable boast
+		SendClientMessage(playerid,COLOR_YELLOW, "[!] Ускорение отключено!");
+	}
+	else
+	{
+		EnableBoast[playerid] = 1; //will enable boast
+		SendClientMessage(playerid,COLOR_YELLOW, "[!] Ускорение включено!");
+		SendClientMessage(playerid,COLOR_WHITE,"Чтобы ускорятся нажмите кнопку огня. Чтобы лететь нажмите кнопку приседания.");
+	}
+	return true;
+}
 CMD:soulsphere(playerid)
 {
 	SetPlayerHealth(playerid,200);
@@ -6098,6 +6116,35 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		}
 	}
 	return true;	
+}
+
+public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
+{
+	if(IsPlayerInAnyVehicle(playerid) && GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
+	{
+		if(newkeys & KEY_FIRE)
+		{
+			if(EnableBoast[playerid] == 1)
+			{
+				new Float:vx,Float:vy,Float:vz;
+				GetVehicleVelocity(GetPlayerVehicleID(playerid),vx,vy,vz);
+				SetVehicleVelocity(GetPlayerVehicleID(playerid), vx * 1.8, vy *1.8, vz * 1.8);
+			}
+		}
+	}
+	if(IsPlayerInAnyVehicle(playerid) && GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
+	{
+		if(newkeys & KEY_CROUCH)
+		{
+			if(EnableBoast[playerid] == 1)
+			{
+				new Float:x, Float:y, Float:z;
+				GetVehicleVelocity(GetPlayerVehicleID(playerid),x,y,z);
+				SetVehicleVelocity(GetPlayerVehicleID(playerid),x,y,z+0.3);
+			}
+		}
+	}
+	return true;
 }
 
 stock IsInvalidSkin(skinid)
